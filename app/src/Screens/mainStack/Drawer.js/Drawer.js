@@ -3,11 +3,15 @@ import React from 'react'
 import 'react-native-gesture-handler';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Wallet from './Wallet';
+import BottomTabs from '../Bottom Tabs Navigator/BottomTabsNavigator';
 
 const DrawerNav = createDrawerNavigator();
 const Drawer = () => {
   return (
-    <DrawerNav.Navigator>
+    <DrawerNav.Navigator screenOptions={{
+      headerShown: false
+    }} >
+      <DrawerNav.Screen name='bottomTab' component={BottomTabs}/>
       <DrawerNav.Screen name='myWallet' component={Wallet} />
     </DrawerNav.Navigator>
   )

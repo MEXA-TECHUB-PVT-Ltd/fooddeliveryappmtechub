@@ -10,8 +10,7 @@ import {
 } from 'react-native-responsive-screen';
 import PaperBtn from '../../Components/PaperButton';
 import {Image} from 'react-native';
-import {TextInput, IconButton, Icon} from 'react-native-paper';
-import { BlurView } from '@react-native-community/blur';
+import {TextInput} from 'react-native-paper';
 
 const SignIn = ({navigation, route}) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -19,7 +18,7 @@ const SignIn = ({navigation, route}) => {
   const [isSignup, setIsSignup] = useState(false);
 
   useLayoutEffect(() => {
-    route.params.navigateTo === 'signIn'
+    route.params?.navigateTo === 'signIn'
       ? setIsSignin(true)
       : setIsSignup(true);
   }, []);
@@ -43,27 +42,27 @@ const SignIn = ({navigation, route}) => {
       : navigation.navigate('verification');
   };
 
+  let obj = {
+    mode: 'flat',
+    underlineColor: COLORS.bgColor,
+    activeUnderlineColor: COLORS.orangeTextColor,
+    style: styles.textInput,
+    selectionColor: COLORS.orangeTextColor,
+  };
   return (
-    <View style={{flex: 1, backgroundColor: COLORS.white}}>
-      <View
-        style={{flexDirection: 'row', paddingRight: 100, position: 'relative'}}>
+    <View style={styles.mainContainer}>
+      <View style={styles.imgContainer}>
         <Image
           source={require('../../assets/Bg_Imgs/SignInbgimg.png')}
-          style={{width: wp('80%'), height: hp('39%')}}
+          style={styles.img}
           resizeMode="contain"
         />
         <PaperBtn
           textColor={COLORS.bgColor}
-          containerStyle={{
-            position: 'absolute',
-            borderColor: COLORS.bgColor,
-            borderWidth: 1,
-            top: hp(2),
-            right: hp(0.7),
-          }}
+          containerStyle={styles.topBtn}
           mode={'outlined'}
-          onPress={() => navigation.navigate('signUp')}>
-          {isSignin ? 'SignUp' : 'SignIn'}
+          onPress={() => isSignin ? navigation.replace('signIn', {navigateTo : 'signUp'}):  navigation.replace('signIn' , {navigateTo : 'signIn'})}>
+          {isSignin ? 'Sign Up' : 'Sign In'}
         </PaperBtn>
       </View>
 
@@ -71,160 +70,86 @@ const SignIn = ({navigation, route}) => {
         initialValues={{email: '', password: '', phone: ''}}
         validationSchema={validationFunction}
         onSubmit={handleSubmit}>
-        {({
-          handleChange,
-          handleBlur,
-          handleSubmit,
-          values,
-          touched,
-          errors,
-        }) => (
-          <View style={{padding: hp(3)}}>
-            <Text
-              style={{
-                color: COLORS.orangeTextColor,
-                fontSize: hp('4'),
-                fontWeight: '600',
-                textAlign: 'center',
-              }}>
-              {isSignin ? 'Signin' : 'SignUp'}
-            </Text>
+        {({handleChange, handleSubmit, values, touched, errors}) => (
+          <View style={{padding: hp(3), marginBottom: 50}}>
+            <Text style={styles.heading}>{isSignin ? 'Sign In' : 'Sign Up'}</Text>
 
-            {isSignup && (
+            <View
+              style={{marginVertical: hp(4), justifyContent: 'space-between'}}>
+              {isSignup && (
+                <TextInput {...obj} placeholder="Username (Optional)" />
+              )}
               <TextInput
-                mode="flat"
-                underlineColor={COLORS.bgColor}
-                activeUnderlineColor={COLORS.orangeTextColor}
-                placeholder="Username (Optional)"
-                selectionColor={COLORS.orangeTextColor}
-                style={{
-                  backgroundColor: COLORS.inputBgColor,
-                  height: hp('6'),
-                  borderTopRightRadius: 20,
-                  borderTopLeftRadius: 20,
-                  marginTop: hp('3'),
-                }}
+                placeholder="Email Address"
+                value={values.email}
+                {...obj}
+                onChangeText={handleChange('email')}
+                style={[styles.textInput, {marginVertical: hp('3')}]}
               />
-            )}
-            <TextInput
-              mode="flat"
-              underlineColor={COLORS.bgColor}
-              activeUnderlineColor={COLORS.orangeTextColor}
-              placeholder="Email Address"
-              selectionColor={COLORS.orangeTextColor}
-              value={values.email}
-              onChangeText={handleChange('email')}
-              style={{
-                backgroundColor: COLORS.inputBgColor,
-                height: hp('6'),
-                borderTopRightRadius: 20,
-                borderTopLeftRadius: 20,
-                // borderRadius: 30,
-                paddingVertical: hp('0.5'),
-                marginVertical: hp('3'),
-              }}
-            />
-            {touched.email && errors.email && (
-              setTimeout(() => {
-                <View
-                style={{
-                  backgroundColor: COLORS.error,
-                  borderRadius: 20,
-                  justifyContent: 'center',
-                  padding: 7,
-                  paddingLeft: 16,
-                }}>
-                <Text style={styles.errorText}>{errors.email}</Text>
-              </View>
-                console.log('Executing code at intervals');
-              }, 400)
-              
-            )}
+              {touched.email && errors.email && (
+                <Text
+                  style={[
+                    styles.errorText,
+                    isSignin
+                      ? styles.errorText.email
+                      : styles.errorText.SignUpEmail,
+                  ]}>
+                  {errors.email}
+                </Text>
+              )}
 
-            {isSignin && (
-              <TextInput
-                mode="flat"
-                underlineColor={COLORS.bgColor}
-                activeUnderlineColor={COLORS.orangeTextColor}
-                placeholder={'Enter Password'}
-                secureTextEntry={isVisible}
-                selectionColor={COLORS.orangeTextColor}
-                keyboardType={'default'}
-                value={values.password}
-                onChangeText={handleChange('password')}
-                right={
-                  <TextInput.Icon
-                    icon="eye"
-                    size={20}
-                    style={{paddingTop: 10}}
-                    onPress={() => setIsVisible(prev => !prev)}
-                  />
-                }
-                style={{
-                  backgroundColor: COLORS.inputBgColor,
-                  height: hp('6'),
-                  borderTopRightRadius: 20,
-                  borderTopLeftRadius: 20,
-                  paddingVertical: hp('0.5'),
-                  marginBottom: hp('6'),
-                  justifyContent: 'center',
-                }}
-              />
-            )}
-            {isSignin && touched.password && errors.password && (
-              <BlurView
-                style={{
-                  backgroundColor: COLORS.error,
-                  borderRadius: 20,
-                  justifyContent: 'center',
-                  padding: 7,
-                  paddingLeft: 16,
-                }}>
-                <Text style={styles.errorText}>{errors.password}</Text>
-              </BlurView>
-            )}
+              {isSignin && (
+                <TextInput
+                  {...obj}
+                  placeholder={'Enter Password'}
+                  secureTextEntry={isVisible}
+                  value={values.password}
+                  onChangeText={handleChange('password')}
+                  right={
+                    <TextInput.Icon
+                      icon="eye"
+                      onPress={() => setIsVisible(prev => !prev)}
+                    />
+                  }
+                />
+              )}
+              {isSignin && touched.password && errors.password && (
+                <Text
+                  style={[
+                    styles.errorText,
+                    isSignin
+                      ? styles.errorText.password
+                      : styles.errorText.SignUpassword,
+                  ]}>
+                  {errors.password}
+                </Text>
+              )}
 
-            {isSignup && (
-              <TextInput
-                mode="flat"
-                underlineColor={COLORS.bgColor}
-                activeUnderlineColor={COLORS.orangeTextColor}
-                placeholder={'Phone Number'}
-                selectionColor={COLORS.orangeTextColor}
-                keyboardType={'numeric'}
-                value={isSignin ? values.password : values.phone}
-                onChangeText={handleChange('phone')}
-                style={{
-                  backgroundColor: COLORS.inputBgColor,
-                  height: hp('6'),
-                  borderTopRightRadius: 20,
-                  borderTopLeftRadius: 20,
-                  paddingVertical: hp('0.5'),
-                  marginBottom: hp('6'),
-                  justifyContent: 'center',
-                }}
-              />
-            )}
+              {isSignup && (
+                <TextInput
+                  {...obj}
+                  placeholder={'Phone Number'}
+                  keyboardType={'numeric'}
+                  value={isSignin ? values.password : values.phone}
+                  onChangeText={handleChange('phone')}
+                />
+              )}
 
-            {isSignup && touched.phone && errors.phone && (
-              <View
-                style={{
-                  backgroundColor: COLORS.error,
-                  borderRadius: 20,
-                  justifyContent: 'center',
-                  padding: 7,
-                  paddingLeft: 16,
-                }}>
-                <Text style={styles.errorText}>{errors.phone}</Text>
-              </View>
-            )}
-
+              {isSignup && touched.phone && errors.phone && (
+                <Text style={[styles.errorText]}>{errors.phone}</Text>
+              )}
+            </View>
             <PaperBtn
               bgColor={COLORS.bgColor}
               textColor={COLORS.white}
               textStyle={{fontSize: hp('2.3')}}
-              onPress={values => handleSubmit(values)}>
-              {isSignin ? 'Signin' : 'SignUp'}
+              onPress={values =>  {
+                handleSubmit(values);
+                isSignin ? navigation.navigate('mainStack') : navigation.navigate('verification')
+                
+
+              }}>
+              {isSignin ? 'Sign In' : 'Sign Up'}
             </PaperBtn>
 
             <PaperBtn
@@ -248,8 +173,54 @@ const SignIn = ({navigation, route}) => {
 export default SignIn;
 
 const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: COLORS.white,
+    paddingBottom: hp(5),
+  },
+  imgContainer: {
+    flexDirection: 'row',
+    paddingRight: 100,
+    position: 'relative',
+  },
+  img: {
+    width: wp('80%'),
+    height: hp('39%'),
+  },
+  topBtn: {
+    position: 'absolute',
+    borderColor: COLORS.bgColor,
+    borderWidth: 1,
+    top: hp(2),
+    right: hp(0.7),
+  },
+  heading: {
+    color: COLORS.orangeTextColor,
+    fontSize: hp('4'),
+    fontWeight: '600',
+    textAlign: 'center',
+  },
+  textInput: {
+    backgroundColor: COLORS.inputBgColor,
+    height: hp('6'),
+    borderTopRightRadius: 20,
+    borderTopLeftRadius: 20,
+    // paddingVertical: hp('0.5')
+  },
   errorText: {
-    color: COLORS.white,
-    // marginBottom: 10,
+    color: COLORS.error,
+    email: {
+      top: 70,
+      left: 5,
+      position: 'absolute',
+    },
+    SignUpEmail: {
+      top: 110,
+      left: 5,
+      position: 'absolute',
+    },
+    password: {
+      padding: 3,
+    },
   },
 });

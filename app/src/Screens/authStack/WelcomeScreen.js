@@ -95,7 +95,7 @@ const WelcomeScreen = ({navigation}) => {
             textStyle={{fontWeight: '500', fontSize: 15}}
             containerStyle={styles.btn}
             uppercase ={true}
-            onPress={() => navigation.navigate('signIn')}
+            onPress={() => navigation.navigate('mainStack')}
               >
               Continue As Guest
             </PaperBtn>

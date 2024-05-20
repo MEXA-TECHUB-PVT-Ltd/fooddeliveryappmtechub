@@ -3,8 +3,9 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomTabsNavigator from '../Bottom Tabs Navigator/BottomTabsNavigator';
 import Drawer from '../Drawer.js/Drawer';
-import NearByDeals from './NearByDeals';
+import NearBy from './NearBy';
 import NearByRestaurants from './NearByRestaurants';
+import ItemDetails from '../../../Components/ItemDetails';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,8 +16,9 @@ const MainStack = () => {
         headerShown: false,
       }}>
       <Stack.Screen name="drawer" component={Drawer} />
-      <Stack.Screen name="nearByDeals" component={NearByDeals} />
-      <Stack.Screen name="NearByRestaurants" component={NearByRestaurants} />
+      <Stack.Screen name="nearBy" component={NearBy} />
+      <Stack.Screen name="nearByRestaurants" component={NearByRestaurants} />
+      <Stack.Screen name='itemDetails' component={ItemDetails} />
     </Stack.Navigator>
   );
 };

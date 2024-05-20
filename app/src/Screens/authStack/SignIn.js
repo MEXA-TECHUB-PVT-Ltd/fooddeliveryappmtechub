@@ -17,10 +17,15 @@ const SignIn = ({navigation, route}) => {
   const [isSignin, setIsSignin] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
 
+  // useLayoutEffect(() => {
+  //   route.params?.navigateTo === 'signIn'
+  //     ? setIsSignin(true)
+  //     : setIsSignup(true);
+  // }, []);
+
   useLayoutEffect(() => {
-    route.params?.navigateTo === 'signIn'
-      ? setIsSignin(true)
-      : setIsSignup(true);
+    setIsSignin(route.params?.navigateTo === 'signIn');
+    setIsSignup(route.params?.navigateTo !== 'signIn');
   }, []);
 
   const validationFunction = yup.object().shape({
@@ -35,8 +40,8 @@ const SignIn = ({navigation, route}) => {
       .required('Phone number is required'),
   });
 
-  const handleSubmit = values => {
-    console.log(values.email);
+  const onFormSubmit = (values) => {
+    console.log('Handle Submit');
     isSignin
       ? navigation.navigate('mainStack')
       : navigation.navigate('verification');
@@ -73,7 +78,7 @@ const SignIn = ({navigation, route}) => {
       <Formik
         initialValues={{email: '', password: '', phone: ''}}
         validationSchema={validationFunction}
-        onSubmit={handleSubmit}>
+        onSubmit={onFormSubmit}>
         {({handleChange, handleSubmit, values, touched, errors}) => (
           <View style={{padding: hp(3), marginBottom: 50}}>
             <Text style={styles.heading}>
@@ -149,12 +154,7 @@ const SignIn = ({navigation, route}) => {
               bgColor={COLORS.bgColor}
               textColor={COLORS.white}
               textStyle={{fontSize: hp('2.3')}}
-              onPress={values => {
-                handleSubmit(values);
-                isSignin
-                  ? navigation.navigate('mainStack')
-                  : navigation.navigate('verification');
-              }}>
+              onPress={handleSubmit}>
               {isSignin ? 'Sign In' : 'Sign Up'}
             </PaperBtn>
 

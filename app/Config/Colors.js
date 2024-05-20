@@ -3,7 +3,7 @@ const COLORS ={
     bgColor: '#FF5722',
     textColor : '#F5F5F5',
     black: '#333333',
-    borderColor: '#B9B9B9',
+    borderColor: '#EBEBEB',
     grayTextColor : '#818181',
     white: '#FFFFFF',
     darkTextColor: '#1D1D20',

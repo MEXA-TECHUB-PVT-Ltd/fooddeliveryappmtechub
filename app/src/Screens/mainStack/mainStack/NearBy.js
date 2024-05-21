@@ -26,16 +26,14 @@ const [Data, setData] = useState([])
   }, [route.params])
 
 
-  const handleSearch  = () =>{
-
-  }
+  
   return (
     <View style={styles.container} >
       <CustomHeader heading={restaurantScreen ? 'Nearby Restaurant' : 'Nearby Deals'} right={'chevron-left'} rightOnpress={() => navigation.goBack()} iconSize={30} left={'magnify'}/>
 
     <View style={{paddingHorizontal: wp(6)}} >
       <FlatList  data={Data} renderItem={({item}) =>{
-        return restaurantScreen? <RestaurantsCard item={item} /> : <DealCard item={item} />
+        return restaurantScreen? <RestaurantsCard restaurant={item} /> : <DealCard item={item} />
         }} 
         ListFooterComponent={<View style={{height: hp(13)}} />}
         showsVerticalScrollIndicator = {false}

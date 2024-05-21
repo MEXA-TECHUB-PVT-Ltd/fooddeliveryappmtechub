@@ -6,8 +6,16 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native';
 
-const RestaurantsCard = ({item, onPress}) => {
+const RestaurantsCard = ({restaurant}) => {
+
+  const item = restaurant.info
+
+  const navigation = useNavigation()
+  const handlePress = () => {
+    navigation.navigate('restaurantDetail', {item: restaurant})
+  };
   return (
     <View style={styles.restaurantItem}>
       <Image source={{uri: item.image}} style={styles.image} />
@@ -18,7 +26,7 @@ const RestaurantsCard = ({item, onPress}) => {
             <Icon
               source={'star'}
               size={wp(3.5)}
-              color={'golden'}
+              color={'#FFCC00'}
             />{'  '}
             {item.rating}
           </Text>
@@ -30,7 +38,7 @@ const RestaurantsCard = ({item, onPress}) => {
               icon={'chevron-right-circle-outline'}
               iconColor={COLORS.bgColor}
               size={20}
-              onPress={onPress}
+              onPress={handlePress}
               style = {{marginTop: -10, padding: 0}}
               // textColor={COLORS.bgColor}
               // textStyle={{ color: COLORS.bgColor }}

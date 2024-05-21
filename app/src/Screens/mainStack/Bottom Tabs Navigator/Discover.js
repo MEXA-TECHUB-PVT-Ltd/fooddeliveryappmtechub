@@ -13,32 +13,49 @@ import TxtInput from '../../../Components/TxtInput';
 import RestaurantsCard from '../../../Components/RestaurantsCard';
 import DealCard from '../../../Components/DealCard';
 import {
-  nearByDeals,
-  nearByRestaurants,
+  // nearByDeals,
   foodCategories,
+  restaurants
 } from '../../../../Config/Data';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
 
+
 const Discover = ({navigation}) => {
   const [selectedCategory, setSelectedCategory] = useState('Salad');
+  
+  function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; 
+    }
+    return array;
+  }
+
+  const shuffleCategories  = shuffle(restaurants.deals)
+  
+  const array = [1, 2, 3, 4, 5];
+  console.log(shuffle(array)); // Output: A shuffled version of the array, e.g., [4, 1, 5, 3, 2]
+  
 
   const [Data, setData] = useState([
     {
       title: 'Nearby Deals',
-      data: nearByDeals.slice(0, 2),
+      data: shuffleCategories.slice(0, 2),
     },
     {
       title: 'NearBy Restaurants',
-      data: nearByRestaurants,
+      data: restaurants,
     },
   ]);
 
+
+
   let seeAllonPress = (heading) => {
     if (heading.split(' ')[1] === 'Restaurants') {
-      navigation.navigate('nearBy', {id: 'Restaurants', Data: nearByRestaurants});
+      navigation.navigate('nearBy', {id: 'Restaurants', Data: restaurants});
     } else {
       navigation.navigate('nearBy', {Data: nearByDeals});
     }
@@ -53,7 +70,7 @@ const Discover = ({navigation}) => {
           case 'Nearby Deals':
             return <DealCard item={item} />;
           case 'NearBy Restaurants':
-            return <RestaurantsCard item={item} />;
+            return <RestaurantsCard restaurant={item} />;
         }
       }}
       maxToRenderPerBatch={2}

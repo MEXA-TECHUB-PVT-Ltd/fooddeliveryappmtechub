@@ -7,6 +7,7 @@ import NearBy from './NearBy';
 import ItemDetails from './ItemDetails';
 import RestaurantDetail from './RestaurantDetail';
 import TabViewExample from '../../../Components/Testing';
+import Notifications from './Notifications';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,6 +23,9 @@ const MainStack = () => {
       <Stack.Screen name="TabViewExample" component={TabViewExample} />
       <Stack.Screen name='itemDetails' component={ItemDetails} />
       <Stack.Screen name='restaurantDetail' component={RestaurantDetail} />
+      <Stack.Screen name="notifications" component={Notifications} />
+
+      
       
     </Stack.Navigator>
   );

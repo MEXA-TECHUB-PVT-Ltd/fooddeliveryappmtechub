@@ -4,6 +4,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Discover from './Discover';
 import {Icon} from 'react-native-paper';
 import COLORS from '../../../../Config/Colors';
+import Orders from './Orders';
 // import Drawer from '../Drawer.js/Drawer'
 
 const Tab = createBottomTabNavigator();
@@ -19,6 +20,7 @@ const BottomTabs = () => {
         name="Discover"
         component={Discover}
         options={{
+          title: 'Discover',
           tabBarIcon: ({size, color}) => {
             return (
               <Icon
@@ -30,6 +32,18 @@ const BottomTabs = () => {
           },
         }}
       />
+      <Tab.Screen name='orders' component={Orders} options={{
+        title: 'Orders',
+        tabBarIcon: ({size, color}) => {
+          return (
+            <Icon
+              source={'gradient-vertical'}
+              size={size}
+              color={color}
+            />
+          );
+        },
+      }} />
     </Tab.Navigator>
   );
 };

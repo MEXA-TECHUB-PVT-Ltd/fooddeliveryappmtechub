@@ -8,6 +8,8 @@ import {
 } from 'react-native-responsive-screen';
 import DealCard from '../../../Components/DealCard';
 import RestaurantsCard from '../../../Components/RestaurantsCard';
+import uuid from 'react-native-uuid';
+
 
 const NearBy = ({route, navigation}) => {
   let [restaurantScreen, setRestaurantScreen] = useState(false) ;
@@ -29,10 +31,10 @@ const [Data, setData] = useState([])
   
   return (
     <View style={styles.container} >
-      <CustomHeader heading={restaurantScreen ? 'Nearby Restaurant' : 'Nearby Deals'} right={'chevron-left'} rightOnpress={() => navigation.goBack()} iconSize={30} left={'magnify'}/>
+      <CustomHeader heading={restaurantScreen ? 'Nearby Restaurant' : 'Nearby Deals'} left={'chevron-left'} leftOnpress={() => navigation.goBack()} iconSize={30} right={'magnify'}/>
 
     <View style={{paddingHorizontal: wp(6)}} >
-      <FlatList  data={Data} renderItem={({item}) =>{
+      <FlatList  data={Data} keyExtractor={()=>uuid.v4()} renderItem={({item}) =>{
         return restaurantScreen? <RestaurantsCard restaurant={item} /> : <DealCard item={item} />
         }} 
         ListFooterComponent={<View style={{height: hp(13)}} />}

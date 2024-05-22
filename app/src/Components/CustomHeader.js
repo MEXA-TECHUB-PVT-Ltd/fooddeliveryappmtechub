@@ -8,12 +8,12 @@ import {
     RFValue,
   } from 'react-native-responsive-screen';
 
-const CustomHeader = ({right, heading, left, iconSize, rightOnpress }) => {
+const CustomHeader = ({right, heading, left, iconSize, leftOnpress }) => {
   return (
     <View style={styles.container} >
-        <IconButton icon={right} size={iconSize} iconColor={COLORS.bgColor} onPress={rightOnpress} />
+        <IconButton icon={left} size={iconSize} iconColor={COLORS.bgColor} onPress={leftOnpress} style={styles.iconBtn} />
       <Text style={styles.heading} >{heading}</Text>
-      <IconButton icon={left} size={iconSize} iconColor={COLORS.bgColor} />
+      <IconButton icon={right} size={iconSize} iconColor={COLORS.bgColor} style={styles.iconBtn} />
       
     </View>
   )
@@ -23,7 +23,6 @@ export default CustomHeader
 
 const styles = StyleSheet.create({
     container :{
-        // backgroundColor: COLORS.cardBgColor,
         flexDirection: 'row',
         justifyContent:'space-between',
         alignItems: 'center',
@@ -32,6 +31,10 @@ const styles = StyleSheet.create({
     heading: {
         color: COLORS.bgColor,
         fontSize: hp(3),
-        fontWeight: '600'
+        fontWeight: '600',
+        lineHeight: wp(6)
+    },
+    iconBtn:{
+
     }
 })

@@ -17,11 +17,8 @@ import COLORS from '../../../../Config/Colors';
 import PaperBtn from '../../../Components/PaperButton';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
 import {useState} from 'react';
-import Appetizers from '../../../Components/RestaurantTabs.js/Appetizers';
-import Desserts from '../../../Components/RestaurantTabs.js/Desserts';
-import Beverages from '../../../Components/RestaurantTabs.js/Beverages';
-import MainCourses from '../../../Components/RestaurantTabs.js/Main Courses';
-import All from '../../../Components/RestaurantTabs.js/All';
+import Category from '../../../Components/Category';
+import uuid from 'react-native-uuid';
 
 const RestaurantDetail = ({route, navigation}) => {
   const [index, setIndex] = useState(0);
@@ -29,45 +26,36 @@ const RestaurantDetail = ({route, navigation}) => {
   const {item} = route.params;
   const restaurantInfo = item.info;
 
-  const restaurantCategories = restaurantInfo.categories.map((item) =>{
+  const restaurantCategories = restaurantInfo.categories.map(item => {
     return {
-      key : item.id.toString(),
-      title : item.name
-    }
-  })
+      key: item.id.toString(),
+      title: item.name ,
+    };
+  });
 
-  restaurantCategories.unshift({key : 'all' , title: 'All'})
-  console.log(restaurantCategories);
+  restaurantCategories.unshift({key: 'all', title: 'All '});
 
-  
-
-  const foods = item.food
-
-  // console.log(foods);
-
-  // console.log(restaurantCategories);
+  const foods = item.food;
 
   const [routes] = useState(restaurantCategories);
-  
-  // console.log(routes[index]);
-  
-  const renderScene = ({ route, jumpTo }) => {
+
+  const renderScene = ({route, jumpTo}) => {
     switch (route.key) {
-      case 'all': 
-      return <All foods = {foods} />
+      case 'all':
+        return <Category foods={foods} />;
       case '1':
-        return <Appetizers foods = {foods} categoryId = {Number(route.key)} />;
+        return <Category foods={foods} categoryId={Number(route.key)} />;
       case '2':
-        return <MainCourses foods = {foods} categoryId = {Number(route.key)} />;
-        case '3' :
-          return <Desserts foods = {foods} categoryId = {Number(route.key)} />;
-        case '4' :
-          return <Beverages foods = {foods} categoryId = {Number(route.key)} />;
-      default: 
-        return null
+        return <Category foods={foods} categoryId={Number(route.key)} />;
+      case '3':
+        return <Category foods={foods} categoryId={Number(route.key)} />;
+      case '4':
+        return <Category foods={foods} categoryId={Number(route.key)} />;
+      default:
+        return null;
     }
   };
-  
+
   const renderTabBar = props => (
     <TabBar
       {...props}
@@ -75,9 +63,12 @@ const RestaurantDetail = ({route, navigation}) => {
       style={styles.tabbar}
       tabStyle={styles.tab}
       labelStyle={styles.label}
-      renderLabel={({route, focused})=>(
-        <Text style={[focused && {color:COLORS.bgColor, fontWeight: '700' }, ]} >{route.title}</Text>
-  )}
+      key={() => uuid.v4()}
+      renderLabel={({route, focused}) => (
+        <Text style={[focused && {color: COLORS.bgColor, fontWeight: '700'}]}>
+          {route.title}
+        </Text>
+      )}
       scrollEnabled
     />
   );
@@ -132,10 +123,11 @@ const RestaurantDetail = ({route, navigation}) => {
       <TabView
         navigationState={{index, routes}}
         renderScene={renderScene}
+        keyExtractor={(item, index) => item.id ?? uuid.v4()}
         onIndexChange={setIndex}
         renderTabBar={renderTabBar}
         lazy
-        // lazyPreloadDistance={1}
+        lazyPreloadDistance={1}
         // initialLayout={{width: wp('100%')}}
       />
     </View>
@@ -147,6 +139,7 @@ export default RestaurantDetail;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: COLORS.white
   },
   image: {
     width: wp('100%'),

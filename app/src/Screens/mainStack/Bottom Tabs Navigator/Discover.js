@@ -13,7 +13,7 @@ import TxtInput from '../../../Components/TxtInput';
 import RestaurantsCard from '../../../Components/RestaurantsCard';
 import DealCard from '../../../Components/DealCard';
 import {
-  // nearByDeals,
+  nearByDeals,
   foodCategories,
   restaurants
 } from '../../../../Config/Data';
@@ -21,6 +21,8 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
+import { v4 as uuidv4 } from 'uuid';
+import { IconButton } from 'react-native-paper';
 
 
 const Discover = ({navigation}) => {
@@ -34,16 +36,20 @@ const Discover = ({navigation}) => {
     return array;
   }
 
-  const shuffleCategories  = shuffle(restaurants.deals)
-  
-  const array = [1, 2, 3, 4, 5];
-  console.log(shuffle(array)); // Output: A shuffled version of the array, e.g., [4, 1, 5, 3, 2]
+
+  let dealsArray = restaurants.flatMap((restaurant)=>{
+    return restaurant.deals
+  })
+ 
+
+  const shuffleDeals = shuffle(dealsArray)
+
   
 
   const [Data, setData] = useState([
     {
       title: 'Nearby Deals',
-      data: shuffleCategories.slice(0, 2),
+      data: shuffleDeals.slice(0, 2),
     },
     {
       title: 'NearBy Restaurants',
@@ -57,11 +63,14 @@ const Discover = ({navigation}) => {
     if (heading.split(' ')[1] === 'Restaurants') {
       navigation.navigate('nearBy', {id: 'Restaurants', Data: restaurants});
     } else {
-      navigation.navigate('nearBy', {Data: nearByDeals});
+      navigation.navigate('nearBy', {Data: shuffleDeals});
     }
   };
 
+  
+
   return (
+    // <Text></Text>
     <SectionList
       sections={Data}
       showsVerticalScrollIndicator={false}
@@ -77,6 +86,10 @@ const Discover = ({navigation}) => {
       style={styles.sectionList}
       ListHeaderComponent={
         <View style={styles.container}>
+          <View style={styles.headerContainer} >
+            <IconButton icon={'format-align-justify'} size={25} iconColor={COLORS.bgColor} style={styles.headerBtnStyle} />
+            <IconButton icon={'bell-badge-outline'} size={30} iconColor={COLORS.bgColor} style={styles.headerBtnStyle} onPress={()=> navigation.navigate('notifications')} />
+          </View>
           <Text style={styles.headerText}>Let's find your favorite food!</Text>
           <TxtInput
             icon={'search'}
@@ -124,10 +137,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
   },
+  headerContainer:{
+      // paddingHorizontal: 
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+  },
+  headerBtnStyle:{
+    marginTop: hp(1)
+  },
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    marginVertical: hp(2.5),
+    marginBottom: hp(2.5),
     color: COLORS.darkTextColor,
   },
   categoryContainer: {

@@ -8,8 +8,12 @@ import {
 import PaperBtn from './PaperButton';
 import { IconButton } from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import uuid from 'react-native-uuid';
+
 
 const DealCard = ({ item, onPress }) => {
+
+  // console.log(item);
 
   const navigation = useNavigation()
   const handlePress = () => {
@@ -21,7 +25,7 @@ const DealCard = ({ item, onPress }) => {
         <View style={styles.infoContainer}>
           <View style={styles.tagsContainer}>
             {item.tags.map(tag => (
-              <Text key={tag} style={styles.tag}>
+              <Text key={uuid.v4()} style={styles.tag}>
                 {tag}
               </Text>
             ))}

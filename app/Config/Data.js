@@ -42,7 +42,7 @@ export const foodCategories = [
         { name: 'Garlic Bread', quantity: 1, image: 'https://spicecravings.com/wp-content/uploads/2021/09/Air-Fryer-Garlic-Bread-3.jpg' },
       ],
       totalAmount: 22.99,
-      status: 'canceled',
+      status: 'cancelled',
       timestamp: '2024-05-17T15:00:00Z',
       deliveryAddress: '456 Elm St, Springfield',
     },
@@ -67,7 +67,7 @@ export const foodCategories = [
         { name: 'Ranch Dip', quantity: 1, image: 'https://thetoastykitchen.com/wp-content/uploads/2020/10/ranch-dip-in-teal-serving-dish.jpg' },
       ],
       totalAmount: 14.99,
-      status: 'canceled',
+      status: 'cancelled',
       timestamp: '2024-05-18T13:00:00Z',
       deliveryAddress: '101 Maple St, Springfield',
     },
@@ -80,6 +80,18 @@ export const foodCategories = [
       ],
       totalAmount: 23.99,
       status: 'completed',
+      timestamp: '2024-05-18T13:30:00Z',
+      deliveryAddress: '202 Pine St, Springfield',
+    },
+    {
+      id: '6',
+      orderNumber: '#12349',
+      items: [
+        { name: 'BBQ Chicken Pizza', quantity: 1, image: 'https://s23209.pcdn.co/wp-content/uploads/2021/10/BBQ-Chicken-PizzaIMG_0027-760x1140.jpg' },
+        { name: 'Onion Rings', quantity: 1 , image: 'https://i0.wp.com/kristineskitchenblog.com/wp-content/uploads/2022/03/air-fryer-onion-rings-0775.jpg?resize=1024%2C1536&ssl=1'},
+      ],
+      totalAmount: 23.99,
+      status: 'pending',
       timestamp: '2024-05-18T13:30:00Z',
       deliveryAddress: '202 Pine St, Springfield',
     },
@@ -189,7 +201,8 @@ export const foodCategories = [
           price: '$12.50',
           tags: ['Burger', 'Pizza', 'Drinks'],
           image: 'https://www.pikpng.com/pngl/b/50-501422_salad-png-high-quality-image-classification-of-salads.png',
-          categoryIds: [1]
+          categoryIds: [1],
+          quantity: 1
 
         },
         {
@@ -200,7 +213,8 @@ export const foodCategories = [
           price: '$15.00',
           tags: ['Chicken', 'Spicy', 'Main Course'],
           image: 'https://www.relishthebite.com/wp-content/uploads/2021/02/Chicken_Karahi-4.jpg',
-          categoryIds: [2]
+          categoryIds: [2],
+          quantity: 1
         },
         {
           id: '3',
@@ -210,7 +224,8 @@ export const foodCategories = [
           price: '$10.00',
           tags: ['Pizza', 'Cheese', 'Italian'],
           image: 'https://img.kidspot.com.au/eMrx01UA/w643-h428-cfill-q90/kk/2015/03/margherita-pizza-recipe-605903-2.jpg',
-          categoryIds: [3]
+          categoryIds: [3],
+          quantity: 1
         },
         {
           id: '4',
@@ -220,7 +235,8 @@ export const foodCategories = [
           price: '$8.00',
           tags: ['Sandwich', 'Grilled', 'Snacks'],
           image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/01/grilled-cheese-sandwich-580x712.jpg',
-          categoryIds: [4]
+          categoryIds: [4],
+          quantity: 1
         },
         {
           id: '5',
@@ -230,7 +246,8 @@ export const foodCategories = [
           price: '$5.50',
           tags: ['Drinks', 'Fruit', 'Healthy'],
           image: 'https://hips.hearstapps.com/hmg-prod/images/delish-how-to-make-a-smoothie-vertical-1542310073.png?crop=1.00xw:0.667xh;0,0.0897xh&resize=980:*',
-          categoryIds: [3]
+          categoryIds: [3],
+          quantity: 1
         },
         {
           id: '6',
@@ -240,7 +257,8 @@ export const foodCategories = [
           price: '$11.00',
           tags: ['Salad', 'Healthy'],
           image: 'https://themacphersondiaries.co.nz/wp-content/uploads/2022/11/IMG_2572-1024x683.jpg',
-          categoryIds: [2]
+          categoryIds: [2],
+          quantity: 1
         },
         {
           id: '7',
@@ -250,7 +268,8 @@ export const foodCategories = [
           price: '$9.00',
           tags: ['Taco', 'Mexican', 'Spicy'],
           image: 'https://www.seriouseats.com/thmb/RKgUYI3hHyM2HeWMF0hyTwQvZXA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__07__20150717-Jamaican-Beef-Tacos-Plated-Morgan-Eisenberg-3f389f42235d4c0586034e259aa75393.jpg',
-          categoryIds: [1]
+          categoryIds: [1],
+          quantity: 1
         },
         {
           id: '8',
@@ -260,7 +279,8 @@ export const foodCategories = [
           price: '$20.00',
           tags: ['Sushi', 'Japanese', 'Seafood'],
           image: 'https://sushidelivery.my/cdn/shop/products/MSPS28_1_600x.jpg?v=1624600821',
-          categoryIds: [2]
+          categoryIds: [2],
+          quantity: 1
         },
         {
           id: '9',
@@ -270,7 +290,8 @@ export const foodCategories = [
           price: '$14.50',
           tags: ['Pasta', 'Italian', 'Cheese'],
           image: 'https://www.modernhoney.com/wp-content/uploads/2023/02/Spaghetti-Carbonara-3-crop-720x763.jpg',
-          categoryIds: [3]
+          categoryIds: [3],
+          quantity: 1
         },
         {
           id: '10',
@@ -280,7 +301,8 @@ export const foodCategories = [
           price: '$13.00',
           tags: ['Vegan', 'Healthy', 'Bowl'],
           image: 'https://cdn.loveandlemons.com/wp-content/uploads/2020/06/IMG_25462-580x791.jpg',
-          categoryIds: [4]
+          categoryIds: [4],
+          quantity: 1
         },
         {
           id: '11',
@@ -290,7 +312,8 @@ export const foodCategories = [
           price: '$18.00',
           tags: ['BBQ', 'Meat', 'Main Course'],
           image: 'https://www.barossafinefoods.com.au/glide-cache/containers/main/2020_bff_porkribs_bbq_website-2.jpg/03d880f2ca84b83fdeb147548e7d9b12.jpg',
-          categoryIds: [4]
+          categoryIds: [4],
+          quantity: 1
         },
       ],
       deals: [
@@ -425,7 +448,8 @@ export const foodCategories = [
           price: '$12.50',
           tags: ['Burger', 'Pizza', 'Drinks'],
           image: 'https://www.pikpng.com/pngl/b/50-501422_salad-png-high-quality-image-classification-of-salads.png',
-          categoryIds: [1]
+          categoryIds: [1],
+          quantity: 1
         },
         {
           id: '2',
@@ -435,7 +459,8 @@ export const foodCategories = [
           price: '$15.00',
           tags: ['Chicken', 'Spicy', 'Main Course'],
           image: 'https://www.relishthebite.com/wp-content/uploads/2021/02/Chicken_Karahi-4.jpg',
-          categoryIds: [2]
+          categoryIds: [2],
+          quantity: 1
         },
         {
           id: '3',
@@ -445,7 +470,8 @@ export const foodCategories = [
           price: '$10.00',
           tags: ['Pizza', 'Cheese', 'Italian'],
           image: 'https://img.kidspot.com.au/eMrx01UA/w643-h428-cfill-q90/kk/2015/03/margherita-pizza-recipe-605903-2.jpg',
-          categoryIds: [3]
+          categoryIds: [3],
+          quantity: 1
         },
         {
           id: '4',
@@ -455,7 +481,8 @@ export const foodCategories = [
           price: '$8.00',
           tags: ['Sandwich', 'Grilled', 'Snacks'],
           image: 'https://cdn.loveandlemons.com/wp-content/uploads/2023/01/grilled-cheese-sandwich-580x712.jpg',
-          categoryIds: [4]
+          categoryIds: [4],
+          quantity: 1
         },
         {
           id: '5',
@@ -465,7 +492,8 @@ export const foodCategories = [
           price: '$5.50',
           tags: ['Drinks', 'Fruit', 'Healthy'],
           image: 'https://hips.hearstapps.com/hmg-prod/images/delish-how-to-make-a-smoothie-vertical-1542310073.png?crop=1.00xw:0.667xh;0,0.0897xh&resize=980:*',
-          categoryIds: [5]
+          categoryIds: [5],
+          quantity: 1
         },
         {
           id: '6',
@@ -475,7 +503,8 @@ export const foodCategories = [
           price: '$11.00',
           tags: ['Salad', 'Healthy'],
           image: 'https://themacphersondiaries.co.nz/wp-content/uploads/2022/11/IMG_2572-1024x683.jpg',
-          categoryIds: [1]
+          categoryIds: [1],
+          quantity: 1
         },
         {
           id: '7',
@@ -485,7 +514,8 @@ export const foodCategories = [
           price: '$9.00',
           tags: ['Taco', 'Mexican', 'Spicy'],
           image: 'https://www.seriouseats.com/thmb/RKgUYI3hHyM2HeWMF0hyTwQvZXA=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__recipes__images__2015__07__20150717-Jamaican-Beef-Tacos-Plated-Morgan-Eisenberg-3f389f42235d4c0586034e259aa75393.jpg',
-          categoryIds: [2]
+          categoryIds: [2],
+          quantity: 1
         },
         {
           id: '8',
@@ -495,7 +525,8 @@ export const foodCategories = [
           price: '$20.00',
           tags: ['Sushi', 'Japanese', 'Seafood'],
           image: 'https://sushidelivery.my/cdn/shop/products/MSPS28_1_600x.jpg?v=1624600821',
-          categoryIds: [3]
+          categoryIds: [3],
+          quantity: 1
         },
         {
           id: '9',
@@ -505,7 +536,8 @@ export const foodCategories = [
           price: '$14.50',
           tags: ['Pasta', 'Italian', 'Cheese'],
           image: 'https://www.modernhoney.com/wp-content/uploads/2023/02/Spaghetti-Carbonara-3-crop-720x763.jpg',
-          categoryIds: [4]
+          categoryIds: [4],
+          quantity: 1
         },
         {
           id: '10',
@@ -515,7 +547,8 @@ export const foodCategories = [
           price: '$13.00',
           tags: ['Vegan', 'Healthy', 'Bowl'],
           image: 'https://cdn.loveandlemons.com/wp-content/uploads/2020/06/IMG_25462-580x791.jpg',
-          categoryIds: [5]
+          categoryIds: [5],
+          quantity: 1
         },
         {
           id: '11',
@@ -525,7 +558,8 @@ export const foodCategories = [
           price: '$18.00',
           tags: ['BBQ', 'Meat', 'Main Course'],
           image: 'https://www.barossafinefoods.com.au/glide-cache/containers/main/2020_bff_porkribs_bbq_website-2.jpg/03d880f2ca84b83fdeb147548e7d9b12.jpg',
-          categoryIds: [1]
+          categoryIds: [1],
+          quantity: 1
         },
       ],
       deals: [

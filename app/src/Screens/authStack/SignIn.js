@@ -195,13 +195,13 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   scrollViewContent: {
-    flexGrow: 1, // Ensures the content can grow and be scrolled
+    flexGrow: 1, 
     justifyContent: 'center',
-    // padding: hp(2), // Adjusted padding for better spacing
+    // padding: hp(2), 
   },
   imgContainer: {
     flexDirection: 'row',
-    paddingRight: wp(20), // Adjusted paddingRight for better alignment
+    paddingRight: wp(20), 
     position: 'relative',
   },
   img: {
@@ -213,34 +213,34 @@ const styles = StyleSheet.create({
     borderColor: COLORS.bgColor,
     borderWidth: 1,
     top: hp(2),
-    right: hp(1), // Adjusted right for better positioning
+    right: hp(1),
   },
   heading: {
     color: COLORS.orangeTextColor,
-    fontSize: hp('4%'), // Adjusted fontSize to use percentage
+    fontSize: hp('4%'), 
     fontWeight: '600',
     textAlign: 'center',
   },
   formContainer: {
-    padding: hp(3), // Adjusted padding for better spacing
-    marginBottom: hp(5), // Adjusted marginBottom for better spacing
+    padding: hp(3),
+    marginBottom: hp(5), 
   },
   inputContainer: {
-    marginVertical: hp(4), // Adjusted marginVertical for better spacing
+    marginVertical: hp(4), 
   },
   textInput: {
     backgroundColor: COLORS.inputBgColor,
-    height: hp('6%'), // Adjusted height to use percentage
+    height: hp('6%'), 
     borderRadius: 20,
     marginVertical: hp(2),
   },
   errorText: {
     color: COLORS.error,
-    fontSize: hp('2%'), // Adjusted fontSize to use percentage
-    marginVertical: hp(0.5), // Adjusted marginVertical for better spacing
+    fontSize: hp('2%'), 
+    marginVertical: hp(0.5), 
   },
   guestBtnContainer: {
     borderColor: COLORS.bgColor,
-    marginTop: hp(4), // Adjusted marginTop for better spacing
+    marginTop: hp(4), 
   },
 });

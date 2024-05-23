@@ -20,7 +20,7 @@ const Category = ({foods, categoryId}) => {
         <FlatList
             keyExtractor={() => uuid.v4()}
             data={category}
-            renderItem={({item}) => <DealCard item={item} />}
+            renderItem={({item}) => <DealCard item={item} icon={'chevron-right-circle-outline'} />}
         />
     );
 };

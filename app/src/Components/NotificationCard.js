@@ -14,7 +14,7 @@ const NotificationCard = ({ notification, icon }) => {
       <View style={styles.contentContainer} >
         <View style={styles.titleContainer } >
       <Text style={styles.title}>{notification.title}</Text>
-      <Text style={styles.timestamp}>{notification.time}</Text>
+      <Text style={styles.time}>{notification.time}</Text>
         </View>
       <Text style={styles.message}>{notification.message}</Text>
       </View>
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     fontWeight: '400',
     marginBottom: hp('0.5%'), 
   },
-  timestamp: {
+  time: {
     fontSize: wp('3%'), 
     color: COLORS.grayTextColor,
   },

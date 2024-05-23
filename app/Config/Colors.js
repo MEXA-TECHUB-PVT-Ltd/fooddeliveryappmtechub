@@ -11,7 +11,7 @@ const COLORS ={
     orangeText: '#AC3416',
     inputBgColor: '#F5F6FA',
     error : "#d0021b",
-    cardBgColor: '#f0f0f0'
+    cardBgColor: '#F5F6FA'
 }
 
 export default COLORS

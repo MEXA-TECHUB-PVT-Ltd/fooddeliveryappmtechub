@@ -21,20 +21,14 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { v4 as uuidv4 } from 'uuid';
 import { IconButton } from 'react-native-paper';
+import { shuffle } from '../../../../Config/Modules';
 
 
 const Discover = ({navigation}) => {
   const [selectedCategory, setSelectedCategory] = useState('Salad');
   
-  function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [array[i], array[j]] = [array[j], array[i]]; 
-    }
-    return array;
-  }
+
 
 
   let dealsArray = restaurants.flatMap((restaurant)=>{
@@ -77,7 +71,7 @@ const Discover = ({navigation}) => {
       renderItem={({item, section}) => {
         switch (section.title) {
           case 'Nearby Deals':
-            return <DealCard item={item} />;
+            return <DealCard item={item} icon={'chevron-right-circle-outline'} />;
           case 'NearBy Restaurants':
             return <RestaurantsCard restaurant={item} />;
         }
@@ -88,7 +82,10 @@ const Discover = ({navigation}) => {
         <View style={styles.container}>
           <View style={styles.headerContainer} >
             <IconButton icon={'format-align-justify'} size={25} iconColor={COLORS.bgColor} style={styles.headerBtnStyle} />
+            <View style={{flexDirection: 'row'}} >
+            <IconButton icon={'cart-outline'} size={30} iconColor={COLORS.bgColor} style={styles.headerBtnStyle} onPress={()=> navigation.navigate('myCart')} />
             <IconButton icon={'bell-badge-outline'} size={30} iconColor={COLORS.bgColor} style={styles.headerBtnStyle} onPress={()=> navigation.navigate('notifications')} />
+            </View>
           </View>
           <Text style={styles.headerText}>Let's find your favorite food!</Text>
           <TxtInput

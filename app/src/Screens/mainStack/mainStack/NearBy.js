@@ -35,7 +35,7 @@ const [Data, setData] = useState([])
 
     <View style={{paddingHorizontal: wp(6)}} >
       <FlatList  data={Data} keyExtractor={()=>uuid.v4()} renderItem={({item}) =>{
-        return restaurantScreen? <RestaurantsCard restaurant={item} /> : <DealCard item={item} />
+        return restaurantScreen? <RestaurantsCard restaurant={item} /> : <DealCard item={item} icon={'chevron-right-circle-outline'} />
         }} 
         ListFooterComponent={<View style={{height: hp(13)}} />}
         showsVerticalScrollIndicator = {false}

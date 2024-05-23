@@ -1,4 +1,4 @@
-import {StyleSheet, Text, View, Image} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import React from 'react';
 import COLORS from '../../Config/Colors';
 import {Icon, IconButton} from 'react-native-paper';
@@ -17,12 +17,21 @@ const RestaurantsCard = ({restaurant}) => {
     navigation.navigate('restaurantDetail', {item: restaurant})
   };
   return (
-    <View style={styles.restaurantItem}>
+    <TouchableOpacity style={styles.restaurantItem}>
       <Image source={{uri: item.image}} style={styles.image} />
       <View style={styles.restaurantInfo}>
         <View style={{flexDirection : 'row', justifyContent:'space-between', alignItems: 'center'}} >
         <Text style={styles.tag}>{item.timing}</Text>
-          <Text style={styles.restaurantRating}>
+          
+        </View>
+
+  
+        <Text style={styles.restaurantName}>{item.name}</Text>
+      
+        <Text style={styles.restaurantReviews}>{item.reviews}</Text>
+      </View>
+      <View style={{alignItems: 'center', gap: 7}} >
+      <Text style={styles.restaurantRating}>
             <Icon
               source={'star'}
               size={wp(3.5)}
@@ -30,23 +39,17 @@ const RestaurantsCard = ({restaurant}) => {
             />{'  '}
             {item.rating}
           </Text>
-        </View>
-        <Text style={styles.restaurantName}>{item.name}</Text>
-        <View style={styles.reviewContainer} >
-        <Text style={styles.restaurantReviews}>{item.reviews}</Text>
-        <IconButton
+      <IconButton
               icon={'chevron-right-circle-outline'}
               iconColor={COLORS.bgColor}
               size={20}
               onPress={handlePress}
-              style = {{marginTop: -10, padding: 0}}
-              // textColor={COLORS.bgColor}
-              // textStyle={{ color: COLORS.bgColor }}
+              // style = {{marginTop: -10, padding: 0}}
             />
-        </View>
-        
+
       </View>
-    </View>
+        
+    </TouchableOpacity>
   );
 };
 
@@ -54,19 +57,20 @@ export default RestaurantsCard;
 
 const styles = StyleSheet.create({
   restaurantItem: {
-    flexDirection: 'row',
     backgroundColor: COLORS.white,
+    borderRadius: 13,
     borderColor: COLORS.borderColor,
     borderWidth: 0.7,
-    borderRadius: wp(2.5),
     overflow: 'hidden',
     marginBottom: hp(1),
     shadowColor: '#000',
-    shadowOffset: {width: 0, height: hp(0.1)},
+    shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 0.3,
-    shadowRadius: wp(1),
+    shadowRadius: 2,
     elevation: 2,
-    padding: wp(1),
+    flexDirection: 'row',
+    alignItems: 'center',
+    padding: wp(1.5),
   },
   image: {
     resizeMode: 'cover',
@@ -76,7 +80,7 @@ const styles = StyleSheet.create({
   },
   restaurantInfo: {
     paddingHorizontal: wp(2),
-    paddingTop: wp(1),
+    // paddingTop: wp(1),
     flex: 1,
     justifyContent: 'space-between'
   },
@@ -86,24 +90,20 @@ const styles = StyleSheet.create({
     borderRadius: wp(2.5),
     paddingVertical: hp(0.3),
     paddingHorizontal: wp(2),
-    marginVertical: hp(0.5),
+    marginBottom: hp(0.5),
     fontSize: wp(3),
     width: wp(35),
     textAlign: 'center'
   },
   restaurantRating: {
-    color: COLORS.orangeTextColor,
+    color: COLORS.grayTextColor,
   },
+ 
   restaurantName: {
     color: COLORS.darkTextColor,
     fontSize: wp(4),
     fontWeight: 'bold',
-  },
-  reviewContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
-    alignItems: 'center',
+    marginVertical: hp(0.7)
   },
   restaurantReviews: {
     color: COLORS.grayTextColor,

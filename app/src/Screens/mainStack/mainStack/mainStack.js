@@ -3,20 +3,35 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import BottomTabsNavigator from '../Bottom Tabs Navigator/BottomTabsNavigator';
 import Drawer from '../Drawer.js/Drawer';
-import NearByDeals from './NearByDeals';
-import NearByRestaurants from './NearByRestaurants';
+import NearBy from './NearBy';
+import ItemDetails from './ItemDetails';
+import RestaurantDetail from './RestaurantDetail';
+import TabViewExample from '../../../Components/Testing';
+import Notifications from './Notifications';
+import MyCart from './MyCart';
+import AddItems from './AddItems';
 
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
   return (
     <Stack.Navigator
+    // initialRouteName='TabViewExample'
       screenOptions={{
         headerShown: false,
       }}>
       <Stack.Screen name="drawer" component={Drawer} />
-      <Stack.Screen name="nearByDeals" component={NearByDeals} />
-      <Stack.Screen name="NearByRestaurants" component={NearByRestaurants} />
+      <Stack.Screen name="nearBy" component={NearBy} />
+      <Stack.Screen name="TabViewExample" component={TabViewExample} />
+      <Stack.Screen name='itemDetails' component={ItemDetails} />
+      <Stack.Screen name='restaurantDetail' component={RestaurantDetail} />
+      <Stack.Screen name="notifications" component={Notifications} />
+      <Stack.Screen name="myCart" component={MyCart} />
+      <Stack.Screen name="addItems" component={AddItems} />
+
+
+      
+      
     </Stack.Navigator>
   );
 };

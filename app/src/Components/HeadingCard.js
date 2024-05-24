@@ -4,6 +4,7 @@ import COLORS from '../../Config/Colors';
 import PaperBtn from './PaperButton';
 
 const HeadingCard = ({heading, btnTxt, onpress}) => {
+  
   return (
     <View style={styles.headingContainer}>
       <Text style={styles.heading}>{heading}</Text>

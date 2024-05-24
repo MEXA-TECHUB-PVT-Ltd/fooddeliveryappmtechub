@@ -12,7 +12,7 @@ const PaperBtn = ({
   containerStyle,
   bgColor,
   rippleColor,
-  InnerContantStyle,
+  InnerContentStyle,
   onPress,
   mode,
   children,
@@ -34,7 +34,7 @@ const PaperBtn = ({
       disabled={false} // Set to true to disable the button
       uppercase={uppercase} // Set to true to make the label text uppercase
       onPress={onPress} // Function to execute on press
-      contentStyle={InnerContantStyle} // Style for the button's inner content
+      contentStyle={InnerContentStyle} // Style for the button's inner content
       style={containerStyle} // Style for the button
       labelStyle={textStyle} // Style for the button text
       testID="myButton" // Test ID for testing

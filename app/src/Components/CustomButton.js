@@ -27,7 +27,7 @@ const CustomButton = ({
           borderColor: borderColor,
           borderWidth: 2,
         },
-        pressed && {opacity: 0.5, borderRadius: 100},
+        pressed && {opacity: 0.5, borderRadius: 2},
       ]}>
       {icon ? (
         <Icon source={icon} size={iconSize} color={iconColor} />

@@ -15,30 +15,24 @@ import DealCard from '../../../Components/DealCard';
 import {
   nearByDeals,
   foodCategories,
-  restaurants
+  restaurants,
 } from '../../../../Config/Data';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import { IconButton } from 'react-native-paper';
-import { shuffle } from '../../../../Config/Modules';
+import {IconButton} from 'react-native-paper';
+import {shuffle, onDealCardPress} from '../../../../Config/Modules';
 
 
 const Discover = ({navigation}) => {
   const [selectedCategory, setSelectedCategory] = useState('Salad');
-  
 
+  let dealsArray = restaurants.flatMap(restaurant => {
+    return restaurant.deals;
+  });
 
-
-  let dealsArray = restaurants.flatMap((restaurant)=>{
-    return restaurant.deals
-  })
- 
-
-  const shuffleDeals = shuffle(dealsArray)
-
-  
+  const shuffleDeals = shuffle(dealsArray);
 
   const [Data, setData] = useState([
     {
@@ -51,9 +45,7 @@ const Discover = ({navigation}) => {
     },
   ]);
 
-
-
-  let seeAllonPress = (heading) => {
+  let seeAllonPress = heading => {
     if (heading.split(' ')[1] === 'Restaurants') {
       navigation.navigate('nearBy', {id: 'Restaurants', Data: restaurants});
     } else {
@@ -61,8 +53,14 @@ const Discover = ({navigation}) => {
     }
   };
 
+  const onDealCardPress = (item) => {
+    navigation.navigate('itemDetails', {item: item});
+    // console.log(cartitem);
+  };
+  const onRestaurantCardPress = (restaurant) => {
+    navigation.navigate('restaurantDetail', {item: restaurant})
+  };
   
-
   return (
     // <Text></Text>
     <SectionList
@@ -71,20 +69,40 @@ const Discover = ({navigation}) => {
       renderItem={({item, section}) => {
         switch (section.title) {
           case 'Nearby Deals':
-            return <DealCard item={item} icon={'chevron-right-circle-outline'} />;
+            return (
+              <DealCard item={item} icon={'chevron-right-circle-outline'}  handlePress={onDealCardPress}  />
+            );
           case 'NearBy Restaurants':
-            return <RestaurantsCard restaurant={item} />;
+            return <RestaurantsCard restaurant={item} handlePress={onRestaurantCardPress} />;
         }
       }}
       maxToRenderPerBatch={2}
       style={styles.sectionList}
       ListHeaderComponent={
         <View style={styles.container}>
-          <View style={styles.headerContainer} >
-            <IconButton icon={'format-align-justify'} size={25} iconColor={COLORS.bgColor} style={styles.headerBtnStyle} />
-            <View style={{flexDirection: 'row'}} >
-            <IconButton icon={'cart-outline'} size={30} iconColor={COLORS.bgColor} style={styles.headerBtnStyle} onPress={()=> navigation.navigate('myCart')} />
-            <IconButton icon={'bell-badge-outline'} size={30} iconColor={COLORS.bgColor} style={styles.headerBtnStyle} onPress={()=> navigation.navigate('notifications')} />
+          <View style={styles.headerContainer}>
+            <IconButton
+              icon={'format-align-justify'}
+              size={25}
+              iconColor={COLORS.bgColor}
+              style={styles.headerBtnStyle}
+              onPress={()=> navigation.openDrawer()}
+            />
+            <View style={{flexDirection: 'row'}}>
+              <IconButton
+                icon={'cart-outline'}
+                size={30}
+                iconColor={COLORS.bgColor}
+                style={styles.headerBtnStyle}
+                onPress={() => navigation.navigate('myCart')}
+              />
+              <IconButton
+                icon={'bell-badge-outline'}
+                size={30}
+                iconColor={COLORS.bgColor}
+                style={styles.headerBtnStyle}
+                onPress={() => navigation.navigate('notifications')}
+              />
             </View>
           </View>
           <Text style={styles.headerText}>Let's find your favorite food!</Text>
@@ -93,6 +111,7 @@ const Discover = ({navigation}) => {
             iconColor={COLORS.darkTextColor}
             IconSize={20}
             placeholder={'Search'}
+            onFocus={()=> navigation.navigate('searchScreen')}
           />
           <View style={styles.categoryContainer}>
             <FlatList
@@ -111,7 +130,8 @@ const Discover = ({navigation}) => {
                     <Text
                       style={[
                         styles.categoryText,
-                        selectedCategory === item && styles.selectedCategoryText,
+                        selectedCategory === item &&
+                          styles.selectedCategoryText,
                       ]}>
                       {item}
                     </Text>
@@ -123,7 +143,11 @@ const Discover = ({navigation}) => {
         </View>
       }
       renderSectionHeader={({section}) => (
-        <HeadingCard btnTxt={'See All'} heading={section.title} onpress={seeAllonPress.bind(this, section.title)} />
+        <HeadingCard
+          btnTxt={'See All'}
+          heading={section.title}
+          onpress={seeAllonPress.bind(this, section.title)}
+        />
       )}
     />
   );
@@ -134,14 +158,14 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.white,
   },
-  headerContainer:{
-      // paddingHorizontal: 
-      flexDirection: 'row',
-      justifyContent: 'space-between',
-      alignItems: 'center',
+  headerContainer: {
+    // paddingHorizontal:
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
-  headerBtnStyle:{
-    marginTop: hp(1)
+  headerBtnStyle: {
+    marginTop: hp(1),
   },
   headerText: {
     fontSize: 24,
@@ -173,8 +197,8 @@ const styles = StyleSheet.create({
   },
   sectionList: {
     paddingHorizontal: wp(5),
-    backgroundColor: COLORS.white
-  }
+    backgroundColor: COLORS.white,
+  },
 });
 
 export default Discover;

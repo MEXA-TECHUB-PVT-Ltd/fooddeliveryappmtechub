@@ -12,7 +12,9 @@ const Drawer = () => {
       screenOptions={{
         headerShown: false,
       }}>
-      <DrawerNav.Screen name="bottomTab" component={BottomTabs} />
+      <DrawerNav.Screen name="bottomTabs" component={BottomTabs} options={{
+        title: 'Discover'
+      }} />
       <DrawerNav.Screen name="myWallet" component={Wallet} />
     </DrawerNav.Navigator>
   );

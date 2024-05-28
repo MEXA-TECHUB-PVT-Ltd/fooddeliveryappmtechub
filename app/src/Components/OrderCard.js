@@ -36,6 +36,7 @@ import {
                 <Text style={styles.address}>{order.deliveryAddress}</Text>
             </Card.Content>
         </Card>
+       
     );
 };
 

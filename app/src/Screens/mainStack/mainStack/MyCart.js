@@ -42,7 +42,7 @@ const MyCart = ({navigation}) => {
     },
   ]);
 
-  let removeItem = id => {
+  let removeItem = (id) => {
     let filterArray = dummyCart.filter(item => item.id !== id);
     return setDummyCart(filterArray);
   };
@@ -61,18 +61,16 @@ const MyCart = ({navigation}) => {
     ))
   }
   return (
-    <KeyboardAvoidingView behavior={'height'} 
-    style={{flex: 1}}>
-
     <View style={styles.container}>
-      <View style={{marginHorizontal: wp('4%')}}>
+      {/* <View style={{marginHorizontal: wp('4%'), flex: 1,}}> */}
         <CustomHeader
           heading={'My Cart'}
           iconSize={30}
           left={'chevron-left'}
           leftOnpress={() => navigation.goBack()}
         />
-        {dummyCart.length < 0 && <View style={styles.card}>
+        {dummyCart.length > 0 && 
+        <View style={styles.card}>
           <IconButton
             icon={'truck-fast-outline'}
             containerColor="#FF572240"
@@ -84,7 +82,8 @@ const MyCart = ({navigation}) => {
             <Text style={styles.title}>Estimate Delivery Time</Text>
             <Text style={styles.estimateTime}>40 Mins</Text>
           </View>
-        </View>}
+        </View>
+        }
         <View>
           <FlatList
             data={dummyCart}
@@ -98,7 +97,7 @@ const MyCart = ({navigation}) => {
             style={styles.flatList}
             renderItem={({item}) => {
               return (
-                <DealCard item={item} icon={'close'} onPress={removeItem} incrementQuantity={incrementQuantity} decrementQuantity = {decrementQuantity}  />
+                <DealCard item={item} icon={'close'} handlePress={removeItem} incrementQuantity={incrementQuantity} decrementQuantity = {decrementQuantity}  />
               );
             }}
           />
@@ -108,7 +107,6 @@ const MyCart = ({navigation}) => {
             </PaperBtn>
           )}
         </View>
-        
         <TextInput
           // label={"Commen"}
           keyboardType={'default'}
@@ -124,9 +122,12 @@ const MyCart = ({navigation}) => {
           // value={inputValues.description}
           // onChangeText={amoutInputHandler.bind(this, 'date')}
           />
+
+      {/* </View> */}
+      <View style={{justifyContent: 'flex-end', flex: 1,}} >
+          <PaperBtn containerStyle={{backgroundColor: COLORS.bgColor, padding: wp('0.7%')}} textColor={COLORS.white} onPress={()=> navigation.navigate('checkout')} >Check Out</PaperBtn>
       </View>
     </View>
-          </KeyboardAvoidingView>
   );
 };
 
@@ -136,6 +137,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: COLORS.white,
+    paddingHorizontal: wp('4%'),     
   },
   card: {
     flexDirection: 'row',

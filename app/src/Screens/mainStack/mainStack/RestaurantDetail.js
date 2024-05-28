@@ -16,45 +16,52 @@ import {Icon, IconButton} from 'react-native-paper';
 import COLORS from '../../../../Config/Colors';
 import PaperBtn from '../../../Components/PaperButton';
 import {TabView, SceneMap, TabBar} from 'react-native-tab-view';
-import {useState} from 'react';
+import {useState, useMemo, useCallback} from 'react';
 import Category from '../../../Components/Category';
 import uuid from 'react-native-uuid';
-
+import CustomTabView from '../../../Components/CustomTabView';
 const RestaurantDetail = ({route, navigation}) => {
-  const [index, setIndex] = useState(0);
-
-  const {item} = route.params;
+  const { item } = route.params;
   const restaurantInfo = item.info;
 
-  const restaurantCategories = restaurantInfo.categories.map(item => {
-    return {
-      key: item.id.toString(),
-      title: item.name ,
-    };
-  });
-
-  restaurantCategories.unshift({key: 'all', title: 'All '});
+  const restaurantCategories = useMemo(() => {
+    const categories = item.info.categories.map(category => ({
+      // key: category.id.toString(),
+      key : uuid.v4().toString(),
+      title: category.name,
+    }));
+    categories.unshift({ key: 'all', title: 'All' });
+    return categories;
+  }, []);
 
   const foods = item.food;
 
-  const [routes] = useState(restaurantCategories);
 
-  const renderScene = ({route, jumpTo}) => {
+  // const renderScene = ({route, jumpTo}) => {
+  //   switch (route.key) {
+  //     case 'all':
+  //       return <Category foods={foods} />;
+  //     case '1':
+  //       return <Category foods={foods} categoryId={Number(route.key)} />;
+  //     case '2':
+  //       return <Category foods={foods} categoryId={Number(route.key)} />;
+  //     case '3':
+  //       return <Category foods={foods} categoryId={Number(route.key)} />;
+  //     case '4':
+  //       return <Category foods={foods} categoryId={Number(route.key)} />;
+  //     default:
+  //       return null;
+  //   }
+  // };
+
+  const renderScene = useCallback(({ route }) => {
     switch (route.key) {
       case 'all':
         return <Category foods={foods} />;
-      case '1':
-        return <Category foods={foods} categoryId={Number(route.key)} />;
-      case '2':
-        return <Category foods={foods} categoryId={Number(route.key)} />;
-      case '3':
-        return <Category foods={foods} categoryId={Number(route.key)} />;
-      case '4':
-        return <Category foods={foods} categoryId={Number(route.key)} />;
       default:
-        return null;
+        return <Category foods={foods} categoryId={Number(route.key)} />;
     }
-  };
+  }, [foods]);
 
   const renderTabBar = props => (
     <TabBar
@@ -120,7 +127,7 @@ const RestaurantDetail = ({route, navigation}) => {
         </View>
       </View>
 
-      <TabView
+      {/* <TabView
         navigationState={{index, routes}}
         renderScene={renderScene}
         keyExtractor={(item, index) => item.id ?? uuid.v4()}
@@ -129,7 +136,10 @@ const RestaurantDetail = ({route, navigation}) => {
         lazy
         lazyPreloadDistance={1}
         // initialLayout={{width: wp('100%')}}
-      />
+      /> */}
+
+  <CustomTabView routes={restaurantCategories} renderScene={renderScene} />
+
     </View>
   );
 };

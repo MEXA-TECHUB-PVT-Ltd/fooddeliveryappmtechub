@@ -2,15 +2,26 @@ import {StyleSheet, Text, View, TextInput} from 'react-native';
 import React from 'react';
 import COLORS from '../../Config/Colors';
 import Icon from 'react-native-vector-icons/Ionicons';
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
 
-const TxtInput = ({style, icon, placeholder, IconSize, iconColor}) => {
+
+const TxtInput = ({style, icon, placeholder, IconSize, iconColor, keyboardType, onChangeText, value, onBlur,multiline, onFocus }) => {
   return (
     <View style={[styles.searchContainer, style]}>
       <Icon name={icon} size={IconSize} color={iconColor} />
       <TextInput
         placeholder={placeholder}
-        placeholderTextColor={COLORS.black}
         style={styles.searchInput}
+        selectionColor={'#FF572270'}
+        keyboardType={keyboardType}
+        onFocus={onFocus}
+        onChangeText={onChangeText}
+        value={value}
+        onBlur={onBlur}
+         multiline = {multiline}
       />
     </View>
   );

@@ -5,6 +5,7 @@ import Discover from './Discover';
 import {Icon} from 'react-native-paper';
 import COLORS from '../../../../Config/Colors';
 import Orders from './Orders';
+import Settings from './Settings';
 // import Drawer from '../Drawer.js/Drawer'
 
 const Tab = createBottomTabNavigator();
@@ -43,6 +44,18 @@ const BottomTabs = () => {
             />
           );
         },
+      }} />
+      <Tab.Screen name='settings' component={Settings} options={{
+        title: 'Settings',
+        tabBarIcon: ({size, color}) =>{
+          return (
+            <Icon source={'cog-outline'}
+            size={size}
+            color={color}
+            />
+          )
+        }
+        
       }} />
     </Tab.Navigator>
   );

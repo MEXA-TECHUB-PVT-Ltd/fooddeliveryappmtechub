@@ -3,15 +3,22 @@ import React, { useEffect } from 'react'
 import { ordersArray } from '../../Config/Data'
 import { useState } from 'react'
 import OrderCard from './OrderCard'
+import OrdersCard from './OrdersCard'
+import {
+  widthPercentageToDP as wp,
+  heightPercentageToDP as hp,
+} from 'react-native-responsive-screen';
+import { useNavigation } from '@react-navigation/native'
 
 const OrdersList = ({status}) => {
 
     const [orders, setOrders] = useState(ordersArray)
+    const navigation = useNavigation()
 
     useEffect(()=>{
 
       if (status) {
-        let filteredOrders = orders.filter((item)=> item.status === status)
+        let filteredOrders = orders.filter((item)=> item.status.toLowerCase() === status)
         setOrders(filteredOrders)
       }
 
@@ -23,8 +30,11 @@ const OrdersList = ({status}) => {
     <SafeAreaView>
       <FlatList
         data={orders}
-        renderItem={({ item }) => <OrderCard order={item} />}
+        renderItem={({ item }) => <OrdersCard order={item} onPress={()=> {
+          navigation.navigate('orderDetails', {item: item})
+        }} />}
         keyExtractor={(item) => item.id}
+        style={styles.FlatList}
       />
     </SafeAreaView>
   )
@@ -32,4 +42,8 @@ const OrdersList = ({status}) => {
 
 export default OrdersList
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  FlatList:{
+    padding: wp('5%')
+  }
+})

@@ -23,81 +23,115 @@ export const foodCategories = [
 
  export const ordersArray = [
     {
-      id: '1',
-      orderNumber: '#12345',
-      items: [
-        { name: 'Margherita Pizza', quantity: 1, image: 'https://foodbyjonister.com/wp-content/uploads/2020/01/MargheritaPizza.jpg'  },
-        { name: 'Caesar Salad', quantity: 2, image: 'https://www.thespruceeats.com/thmb/nXVy3WHyN1DukgK9GkYV7kFadY4=/750x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/classic-caesar-salad-recipe-996054-Hero_01-33c94cc8b8e841ee8f2a815816a0af95.jpg' },
-      ],
-      totalAmount: 25.99,
-      status: 'completed',
-      timestamp: '2024-05-17T14:30:00Z',
-      deliveryAddress: '123 Main St, Springfield',
-    },
-    {
-      id: '2',
-      orderNumber: '#12346',
-      items: [
-        { name: 'Pepperoni Pizza', quantity: 1, image: 'https://sipbitego.com/wp-content/uploads/2021/08/Pepperoni-Pizza-Recipe-Sip-Bite-Go.jpg' },
-        { name: 'Garlic Bread', quantity: 1, image: 'https://spicecravings.com/wp-content/uploads/2021/09/Air-Fryer-Garlic-Bread-3.jpg' },
-      ],
-      totalAmount: 22.99,
-      status: 'cancelled',
-      timestamp: '2024-05-17T15:00:00Z',
-      deliveryAddress: '456 Elm St, Springfield',
-    },
-    {
-      id: '3',
-      orderNumber: '#12347',
-      items: [
-        { name: 'Veggie Burger', quantity: 1, image: 'https://www.noracooks.com/wp-content/uploads/2023/04/veggie-burgers-6-1024x1536.jpg' },
-        { name: 'French Fries', quantity: 1, image: 'https://www.recipetineats.com/wp-content/uploads/2022/09/Fries-with-rosemary-salt_1.jpg?resize=650,813' },
-        { name: 'Coke', quantity: 1, image: 'https://www.beveragedaily.com/var/wrbm_gb_food_pharma/storage/images/_aliases/wrbm_large/publications/food-beverage-nutrition/beveragedaily.com/article/2019/07/12/diet-coke-helps-boost-coca-cola-s-brand-value-brand-finance-rankings/9912727-1-eng-GB/Diet-Coke-helps-boost-Coca-Cola-s-brand-value-Brand-Finance-rankings.jpg' },
-      ],
-      totalAmount: 18.49,
-      status: 'completed',
-      timestamp: '2024-05-18T12:45:00Z',
-      deliveryAddress: '789 Oak St, Springfield',
-    },
-    {
-      id: '4',
-      orderNumber: '#12348',
-      items: [
-        { name: 'Chicken Wings', quantity: 1, image: 'https://www.giverecipe.com/wp-content/uploads/2023/01/Air-Fryer-Whole-Chicken-Wings.jpg' },
-        { name: 'Ranch Dip', quantity: 1, image: 'https://thetoastykitchen.com/wp-content/uploads/2020/10/ranch-dip-in-teal-serving-dish.jpg' },
-      ],
-      totalAmount: 14.99,
-      status: 'cancelled',
-      timestamp: '2024-05-18T13:00:00Z',
-      deliveryAddress: '101 Maple St, Springfield',
-    },
-    {
-      id: '5',
-      orderNumber: '#12349',
-      items: [
-        { name: 'BBQ Chicken Pizza', quantity: 1, image: 'https://s23209.pcdn.co/wp-content/uploads/2021/10/BBQ-Chicken-PizzaIMG_0027-760x1140.jpg' },
-        { name: 'Onion Rings', quantity: 1 , image: 'https://i0.wp.com/kristineskitchenblog.com/wp-content/uploads/2022/03/air-fryer-onion-rings-0775.jpg?resize=1024%2C1536&ssl=1'},
-      ],
-      totalAmount: 23.99,
-      status: 'completed',
-      timestamp: '2024-05-18T13:30:00Z',
-      deliveryAddress: '202 Pine St, Springfield',
-    },
-    {
-      id: '6',
-      orderNumber: '#12349',
-      items: [
-        { name: 'BBQ Chicken Pizza', quantity: 1, image: 'https://s23209.pcdn.co/wp-content/uploads/2021/10/BBQ-Chicken-PizzaIMG_0027-760x1140.jpg' },
-        { name: 'Onion Rings', quantity: 1 , image: 'https://i0.wp.com/kristineskitchenblog.com/wp-content/uploads/2022/03/air-fryer-onion-rings-0775.jpg?resize=1024%2C1536&ssl=1'},
-      ],
-      totalAmount: 23.99,
+      id: 'fgrth456',
       status: 'pending',
-      timestamp: '2024-05-18T13:30:00Z',
-      deliveryAddress: '202 Pine St, Springfield',
+      totalAmount: 97.67,
+      restaurantName: 'Adison',
+      deliveryAddress: 'lorem ipsum dolor sit',
+      image:
+        'https://www.giverecipe.com/wp-content/uploads/2023/01/Air-Fryer-Whole-Chicken-Wings.jpg',
+      items: [
+        { id: '1', name: 'Chicken Wings', quantity: 2, price: 34 },
+        { id: '2', name: 'Ranch Dip', quantity: 1, price: 34 },
+        { id: '3', name: 'French Fries', quantity: 3, price: 34 },
+      ],
+      subtotal: 29.89,
+      serviceCharges: 6.0,
+      paymentMethod: 'Master card',
+      deliveryTime: '40 mins',
+      rider: {
+        name: 'Sunny Deol',
+        avatar:
+          'https://www.giverecipe.com/wp-content/uploads/2023/01/Air-Fryer-Whole-Chicken-Wings.jpg',
+      },
+    },
+    {
+      id: 'dhyrt123',
+      status: 'Completed',
+      totalAmount: 85.50,
+      restaurantName: 'Burger House',
+      deliveryAddress: '123 Main St',
+      image:
+      'https://foodbyjonister.com/wp-content/uploads/2020/01/MargheritaPizza.jpg',
+      items: [
+        { id: '1', name: 'Classic Burger', quantity: 1, price: 40 },
+        { id: '2', name: 'Cheese Burger', quantity: 1, price: 45.50 },
+      ],
+      subtotal: 85.50,
+      serviceCharges: 0,
+      paymentMethod: 'Visa',
+      deliveryTime: '30 mins',
+      rider: {
+        name: 'John Doe',
+        avatar:
+        'https://foodbyjonister.com/wp-content/uploads/2020/01/MargheritaPizza.jpg'
+      },
+    },
+    {
+      id: 'lmno678',
+      status: 'Cancelled',
+      totalAmount: 60.00,
+      restaurantName: 'Pasta Place',
+      deliveryAddress: '456 Elm St',
+      image:
+      'https://spicecravings.com/wp-content/uploads/2021/09/Air-Fryer-Garlic-Bread-3.jpg',
+      items: [
+        { id: '1', name: 'Spaghetti', quantity: 1, price: 20 },
+        { id: '2', name: 'Lasagna', quantity: 1, price: 20 },
+        { id: '3', name: 'Garlic Bread', quantity: 2, price: 10 },
+      ],
+      subtotal: 60.00,
+      serviceCharges: 0,
+      paymentMethod: 'PayPal',
+      deliveryTime: '50 mins',
+      rider: {
+        name: 'Jane Smith',
+        avatar:
+        'https://spicecravings.com/wp-content/uploads/2021/09/Air-Fryer-Garlic-Bread-3.jpg'      },
+    },
+    {
+      id: 'pqrs987',
+      status: 'pending',
+      totalAmount: 120.00,
+      restaurantName: 'Sushi World',
+      deliveryAddress: '789 Pine St',
+      image:
+      'https://www.recipetineats.com/wp-content/uploads/2022/09/Fries-with-rosemary-salt_1.jpg?resize=650,813',      items: [
+        { id: '1', name: 'Sushi Platter', quantity: 1, price: 60 },
+        { id: '2', name: 'Tempura', quantity: 2, price: 30 },
+      ],
+      subtotal: 120.00,
+      serviceCharges: 0,
+      paymentMethod: 'Amex',
+      deliveryTime: '45 mins',
+      rider: {
+        name: 'Sam Wilson',
+        avatar:
+        'https://www.recipetineats.com/wp-content/uploads/2022/09/Fries-with-rosemary-salt_1.jpg?resize=650,813'      },
+    },
+    {
+      id: 'tuvw123',
+      status: 'Completed',
+      totalAmount: 75.25,
+      restaurantName: 'Pizza Palace',
+      deliveryAddress: '101 Maple St',
+      image:
+      'https://thetoastykitchen.com/wp-content/uploads/2020/10/ranch-dip-in-teal-serving-dish.jpg'  ,    items: [
+        { id: '1', name: 'Pepperoni Pizza', quantity: 1, price: 25.25 },
+        { id: '2', name: 'Veggie Pizza', quantity: 2, price: 50 },
+      ],
+      subtotal: 75.25,
+      serviceCharges: 0,
+      paymentMethod: 'Discover',
+      deliveryTime: '60 mins',
+      rider: {
+        name: 'Alex Brown',
+        avatar:
+        'https://thetoastykitchen.com/wp-content/uploads/2020/10/ranch-dip-in-teal-serving-dish.jpg'      },
     },
   ];
   
-
+ 
  export const notificationsArray = [
     {
       "id": "1",

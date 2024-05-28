@@ -1,33 +1,25 @@
-import {StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
+import {StyleSheet, Text, View, Image, TouchableOpacity, Pressable} from 'react-native';
 import React, {useState} from 'react';
 import COLORS from '../../Config/Colors';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from 'react-native-responsive-screen';
-import PaperBtn from './PaperButton';
 import {IconButton} from 'react-native-paper';
-import {useNavigation} from '@react-navigation/native';
 import uuid from 'react-native-uuid';
 import CustomButton from './CustomButton';
 
 
-const DealCard = ({item, onPress, icon, incrementQuantity, decrementQuantity}) => {
+const DealCard = ({item, handlePress, icon, incrementQuantity, decrementQuantity, darkMode}) => {
   // console.log(item);
 
-  const [count, setCount] = useState(0)
-  // let cartitem = !!onPress
-  const navigation = useNavigation();
 
-  const handlePress = () => {
-    navigation.navigate('itemDetails', {item: item});
-    // console.log(cartitem);
-  };
+
   return (
-    <TouchableOpacity onPress={handlePress} style={styles.container}>
+    <Pressable onPress={ ()=>!incrementQuantity && handlePress(item)} style={ ({pressed})=> [styles.container, pressed && !incrementQuantity && styles.onPress]}>
       <Image source={{uri: item.image}} style={styles.image} />
       <View style={styles.infoContainer}>
-        {!onPress && (
+        {!incrementQuantity && (
           <View style={styles.tagsContainer}>
             {item.tags.map(tag => (
               <Text key={uuid.v4()} style={styles.tag}>
@@ -42,7 +34,7 @@ const DealCard = ({item, onPress, icon, incrementQuantity, decrementQuantity}) =
         <Text style={styles.price}>{item.price}</Text>
 
        {
-        onPress && <View style={{flexDirection: 'row', alignItems: 'center',}} >
+        incrementQuantity && <View style={{flexDirection: 'row', alignItems: 'center',}} >
         <CustomButton icon={'minus'} iconSize={wp(3.5)} iconColor={COLORS.bgColor}  containerStyle={styles.quantityBtn} onPress={()=>decrementQuantity(item.id)} /> 
         <Text style={{marginHorizontal: hp(1)}} >{item.quantity}</Text> 
         <CustomButton icon={'plus'} iconSize={wp(3.5)} iconColor={COLORS.white} bgColor={COLORS.bgColor} containerStyle={styles.quantityBtn} onPress={()=>incrementQuantity(item.id)} />  
@@ -53,9 +45,9 @@ const DealCard = ({item, onPress, icon, incrementQuantity, decrementQuantity}) =
         icon={icon}
         iconColor={COLORS.bgColor}
         size={20}
-        onPress={() => (onPress ? onPress(item.id) : handlePress)}
+        onPress={() => incrementQuantity ? handlePress(item.id) : handlePress(item)}
       />
-    </TouchableOpacity>
+    </Pressable>
   );
 };
 
@@ -78,6 +70,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: wp(1),
     // height: hp
+  },
+  onPress : {
+    opacity: 0.7, borderRadius: 13
   },
   image: {
     resizeMode: 'cover',

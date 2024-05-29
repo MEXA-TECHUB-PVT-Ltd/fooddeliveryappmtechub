@@ -42,7 +42,7 @@ const MyCart = ({navigation}) => {
     },
   ]);
 
-  let removeItem = (id) => {
+  const removeItem = id => {
     let filterArray = dummyCart.filter(item => item.id !== id);
     return setDummyCart(filterArray);
   };

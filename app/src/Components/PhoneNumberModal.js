@@ -38,7 +38,7 @@ const PhoneNumberModal = ({ visible, onClose }) => {
         touched,
       }) => (
         <Modal
-          animationType="slide"
+          animationType="fade"
           transparent={true}
           visible={visible}
           onRequestClose={onClose}
@@ -78,6 +78,7 @@ const styles = StyleSheet.create({
   modalContainer: {
     flex: 1,
     justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.7)'
   },
   modalContent: {
     backgroundColor: 'white',

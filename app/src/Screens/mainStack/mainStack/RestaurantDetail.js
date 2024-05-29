@@ -32,11 +32,22 @@ const RestaurantDetail = ({route, navigation}) => {
     }));
     categories.unshift({ key: 'all', title: 'All' });
     return categories;
-  }, []);
+  }, [item.info.categories]);
 
   const foods = item.food;
 
+  
+  const renderScene = useCallback(({ route }) => {
+    switch (route.key) {
+      case 'all':
+        return <Category foods={foods} />;
+      default:
+        return <Category foods={foods} categoryId={Number(route.key)} />;
+    }
+  }, [foods]);
 
+
+  
   // const renderScene = ({route, jumpTo}) => {
   //   switch (route.key) {
   //     case 'all':
@@ -54,31 +65,23 @@ const RestaurantDetail = ({route, navigation}) => {
   //   }
   // };
 
-  const renderScene = useCallback(({ route }) => {
-    switch (route.key) {
-      case 'all':
-        return <Category foods={foods} />;
-      default:
-        return <Category foods={foods} categoryId={Number(route.key)} />;
-    }
-  }, [foods]);
 
-  const renderTabBar = props => (
-    <TabBar
-      {...props}
-      indicatorStyle={styles.indicator}
-      style={styles.tabbar}
-      tabStyle={styles.tab}
-      labelStyle={styles.label}
-      key={() => uuid.v4()}
-      renderLabel={({route, focused}) => (
-        <Text style={[focused && {color: COLORS.bgColor, fontWeight: '700'}]}>
-          {route.title}
-        </Text>
-      )}
-      scrollEnabled
-    />
-  );
+  // const renderTabBar = props => (
+  //   <TabBar
+  //     {...props}
+  //     indicatorStyle={styles.indicator}
+  //     style={styles.tabbar}
+  //     tabStyle={styles.tab}
+  //     labelStyle={styles.label}
+  //     key={() => uuid.v4()}
+  //     renderLabel={({route, focused}) => (
+  //       <Text style={[focused && {color: COLORS.bgColor, fontWeight: '700'}]}>
+  //         {route.title}
+  //       </Text>
+  //     )}
+  //     scrollEnabled
+  //   />
+  // );
 
   return (
     <View style={styles.container}>

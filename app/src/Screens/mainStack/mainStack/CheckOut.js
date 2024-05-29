@@ -36,9 +36,9 @@ const [orderDetails, setOrderDetails] = useState({
 })
 
 useEffect(()=>{
-  const subTotal = parseFloat(orderDetails.subTotal.replace('$', ''))
-  const serviceCharges = parseFloat(orderDetails.serviceCharges.replace('$', ''))
-  setOrderDetails(prev => ({
+  const subTotal = Number.parseFloat(orderDetails.subTotal.replace('$', ''))
+  const serviceCharges = Number.parseFloat(orderDetails.serviceCharges.replace('$', ''))
+  setOrderDetails(prev => ({ 
     ...prev, 
     Total: (subTotal + serviceCharges).toFixed(2)
   }))
@@ -46,7 +46,7 @@ useEffect(()=>{
 
 useEffect(() => {
   if (isWalletPayment) {
-    const walletBalance = parseFloat(userInfo.wallet.replace('$', ''));
+    const walletBalance = Number.parseFloat(userInfo.wallet.replace('$', ''));
     if (walletBalance === 0) {
       setEnoughAmount(true);
     } else {
@@ -60,13 +60,19 @@ useEffect(() => {
   const onSelect = option => {
     if (option === 'Card Payment') {
       // setIsCard(true);
-      navigation.navigate('cardInfo', {setIsCard});
+      setSelectedOption(option)
+      setIsCard(true)
+      navigation.navigate('cardInfo');
+      
     }
     else if (option === 'Wallet Payment') {
+      setSelectedOption(option)
+
         setIsWalletPayment(true)
         setModalVisible(false)
     }
     else{
+      setSelectedOption(option)
         setModalVisible(false)
     }
   };
@@ -97,58 +103,47 @@ useEffect(() => {
         <Divider style={styles.Divider} />
         <TxtInput placeholder={'Promo Code'} />
 
-        {(function() {
-        if (isWalletPayment) {
-          return (
-            <>
-              <Text style={styles.methodHeading}>Payment Method</Text>
-              <View style={styles.walletCardContainer}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Icon
-                    source="wallet"
-                    size={wp('10%')}
-                    color={COLORS.bgColor}
-                  />
-                  <Text style={styles.WalletPaymentTxt}>Wallet Payment</Text>
-                </View>
-
-                <View style={styles.walletCardSubContainer}>
-                  <Text style={{ fontSize: wp('3.2%') }}>Total Balance</Text>
-                  <Text style={styles.UserBalance}>{userInfo.wallet}</Text>
-                </View>
-              </View>
-            </>
-          );
-        }
-        else if (isCard) {
-          return (<>
-            <Text style={styles.methodHeading}>Payment Method</Text>
-            <View style={styles.walletCardContainer}>
-                <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-                  <Icon
-                    source="credit-card-edit-outline" 
-                    size={wp('10%')}
-                    color={COLORS.bgColor}
-                    />
-                  <Text style={styles.WalletPaymentTxt}>Card Payment</Text>
-                </View>
-
-                </View>
-                    </>
-                  )
-                
-        }
-        else {
-          return (
-            <PaperBtn
-              textColor={COLORS.bgColor}
-              onPress={() => setModalVisible(true)}
-            >
-              Select Payment Option
-            </PaperBtn>
-          );
-        }
-      })()}
+        {isWalletPayment ? (
+               
+             <>
+             <Text style={styles.methodHeading}>Payment Method</Text>
+    <View style={styles.walletCardContainer}>
+       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+         <Icon
+           source="wallet"
+           size={wp('10%')}
+           color={COLORS.bgColor}
+         />
+         <Text style={styles.WalletPaymentTxt}>Wallet Payment</Text>
+       </View>
+       <View style={styles.walletCardSubContainer}>
+         <Text style={{ fontSize: wp('3.2%') }}>Total Balance</Text>
+         <Text style={styles.UserBalance}>{userInfo.wallet}</Text>
+       </View>
+     </View>
+   </>
+ ) : isCard ? (
+   <>
+     <Text style={styles.methodHeading}>Payment Method</Text>
+     <View style={styles.walletCardContainer}>
+       <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+         <Icon
+           source="credit-card-edit-outline" 
+           size={wp('10%')}
+           color={COLORS.bgColor}
+         />
+         <Text style={styles.WalletPaymentTxt}>Card Payment</Text>
+       </View>
+     </View>
+   </>
+ ) : (
+   <PaperBtn
+     textColor={COLORS.bgColor}
+     onPress={() => setModalVisible(true)}
+   >
+     Select Payment Option
+   </PaperBtn>
+ )}
 
         <View style={styles.placeOrderContainer}>
           <PlaceOrderTxtContainer property={'Subtotal'} Value={orderDetails.subTotal} />

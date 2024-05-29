@@ -28,7 +28,7 @@ import {shuffle, onDealCardPress} from '../../../../Config/Modules';
 const Discover = ({navigation}) => {
   const [selectedCategory, setSelectedCategory] = useState('Salad');
 
-  let dealsArray = restaurants.flatMap(restaurant => {
+  const dealsArray = restaurants.flatMap(restaurant => {
     return restaurant.deals;
   });
 
@@ -45,7 +45,7 @@ const Discover = ({navigation}) => {
     },
   ]);
 
-  let seeAllonPress = heading => {
+  const seeAllonPress = heading => {
     if (heading.split(' ')[1] === 'Restaurants') {
       navigation.navigate('nearBy', {id: 'Restaurants', Data: restaurants});
     } else {
@@ -107,11 +107,12 @@ const Discover = ({navigation}) => {
           </View>
           <Text style={styles.headerText}>Let's find your favorite food!</Text>
           <TxtInput
-            icon={'search'}
+            icon={'magnify'}
             iconColor={COLORS.darkTextColor}
             IconSize={20}
             placeholder={'Search'}
             onFocus={()=> navigation.navigate('searchScreen')}
+            
           />
           <View style={styles.categoryContainer}>
             <FlatList

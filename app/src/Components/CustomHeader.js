@@ -8,12 +8,12 @@ import {
     RFValue,
   } from 'react-native-responsive-screen';
 
-const CustomHeader = ({right, heading, left, iconSize, leftOnpress }) => {
+const CustomHeader = ({right, heading, left, iconSize, leftOnpress, rightOnPress, headingColor, iconColor }) => {
   return (
     <View style={styles.container} >
-        <IconButton icon={left} size={iconSize} iconColor={COLORS.bgColor} onPress={leftOnpress} style={styles.iconBtn} />
-      <Text style={styles.heading} >{heading}</Text>
-      <IconButton icon={right} size={iconSize} iconColor={COLORS.bgColor} style={styles.iconBtn} />
+        <IconButton icon={left} size={iconSize} iconColor={iconColor? iconColor : COLORS.bgColor} onPress={leftOnpress} style={styles.iconBtn} />
+      <Text style={[styles.heading, headingColor && {color: headingColor}]} >{heading}</Text>
+      <IconButton icon={right} size={iconSize} iconColor={COLORS.bgColor} style={styles.iconBtn} onPress={rightOnPress} />
       
     </View>
   )

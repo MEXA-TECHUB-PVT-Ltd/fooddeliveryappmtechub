@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 const Category = ({foods, categoryId}) => {
     const [category, setCategory] = useState([]);
 
-    let navigation = useNavigation()
+    const navigation = useNavigation()
 
     useEffect(() => {
         if (categoryId) {

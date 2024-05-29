@@ -1,7 +1,7 @@
 import {StyleSheet, Text, View, TextInput} from 'react-native';
 import React from 'react';
 import COLORS from '../../Config/Colors';
-import Icon from 'react-native-vector-icons/Ionicons';
+import { Icon } from 'react-native-paper';
 import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
@@ -11,7 +11,7 @@ import {
 const TxtInput = ({style, icon, placeholder, IconSize, iconColor, keyboardType, onChangeText, value, onBlur,multiline, onFocus }) => {
   return (
     <View style={[styles.searchContainer, style]}>
-      <Icon name={icon} size={IconSize} color={iconColor} />
+      <Icon source={icon} size={IconSize} color={iconColor} />
       <TextInput
         placeholder={placeholder}
         style={styles.searchInput}
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     borderRadius: 25,
     paddingHorizontal: 10,
-    marginBottom: 20,
+    marginBottom: 10,
   },
   searchInput: {
     color: COLORS.black,

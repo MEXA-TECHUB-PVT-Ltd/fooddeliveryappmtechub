@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, SafeAreaView, FlatList } from 'react-native'
 import React, { useEffect } from 'react'
 import { ordersArray } from '../../Config/Data'
 import { useState } from 'react'
-import OrderCard from './OrderCard'
+
 import OrdersCard from './OrdersCard'
 import {
   widthPercentageToDP as wp,

@@ -101,7 +101,6 @@ const ShippingAddress = () => {
                 <Text style={styles.errorText}>{errors.label}</Text>
             ) : null}
 
-            {/* <Button onPress={handleSubmit} title="Save" color={COLORS.bgColor} /> */}
             <PaperBtn onPress={handleSubmit} containerStyle={{backgroundColor: COLORS.bgColor}} textColor={COLORS.white} >Save</PaperBtn>
           </>
         )}

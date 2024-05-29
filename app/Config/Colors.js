@@ -17,9 +17,9 @@ const COLORS ={
         bgColor2: '#313131',
         bgColor3: '#100f10',
         bgColor4: '#37373',
-        fontColor1 : "rgb(#fff, 0.96)",
-        fontColor2 : "rgb(#fff, 0.67)",
-        fontColor3: "rgb(#fff, 0.45)",
+        fontColor1 : "rgba(#fff, 0.96)",
+        fontColor2 : "rgba(#fff, 0.67)",
+        fontColor3: "rgba(#fff, 0.45)",
     }
 }
 

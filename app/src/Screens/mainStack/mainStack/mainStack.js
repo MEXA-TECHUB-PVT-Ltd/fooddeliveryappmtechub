@@ -15,6 +15,8 @@ import CardInfo from './CardInfo';
 import ShippingAddress from './ShippingAddress';
 import OrderDetails from './OrderDetails';
 import SearchScreen from './SearchScreen';
+import UpdateProfile from './UpdateProfile';
+import Terms from './Terms';
 const Stack = createNativeStackNavigator();
 
 const MainStack = () => {
@@ -37,6 +39,8 @@ const MainStack = () => {
       <Stack.Screen name="shippingAddress" component={ShippingAddress} />
       <Stack.Screen name="orderDetails" component={OrderDetails} />
       <Stack.Screen name="searchScreen" component={SearchScreen} />
+      <Stack.Screen name='updateProfile' component={UpdateProfile} />
+      <Stack.Screen name='terms' component={Terms} />
 
 
 

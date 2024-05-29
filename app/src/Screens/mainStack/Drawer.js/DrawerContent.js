@@ -76,7 +76,11 @@ const styles = StyleSheet.create({
   bottomDrawerSection: {
     marginBottom: 15,
     borderTopColor: '#f4f4f4',
+<<<<<<< HEAD
     backgroundColor: COLORS.black,
+=======
+    // backgroundColor: COLORS.black,
+>>>>>>> 204b8aa1f4da006b0c593c0a3d999129d9027255
     flex: 1,
     borderTopWidth: 1,
     paddingHorizontal: 20,

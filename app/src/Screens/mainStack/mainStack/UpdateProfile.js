@@ -120,7 +120,7 @@ const UpdateProfile = ({navigation}) => {
               <Marker coordinate={initialRegion} />
             </MapView> */}
 
-            <PaperBtn containerStyle={styles.updateButton} textStyle={styles.updateButtonText} onPress={()=> {handleSubmit}} >UPDATE</PaperBtn>
+            <PaperBtn containerStyle={styles.updateButton} textStyle={styles.updateButtonText} onPress={ handleSubmit} >UPDATE</PaperBtn>
             
           </>
         )}

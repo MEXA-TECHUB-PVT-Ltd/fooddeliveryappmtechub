@@ -3,6 +3,9 @@ import React, { useState, useEffect } from 'react';
 import DealCard from './DealCard';
 import uuid from 'react-native-uuid';
 import { useNavigation } from '@react-navigation/native';
+import PaperBtn from './PaperButton';
+import COLORS from '../../Config/Colors';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 
 const Category = ({foods, categoryId}) => {
     const [category, setCategory] = useState([]);
@@ -28,10 +31,31 @@ const Category = ({foods, categoryId}) => {
             keyExtractor={() => uuid.v4()}
             data={category}
             renderItem={({item}) => <DealCard item={item} icon={'chevron-right-circle-outline'} handlePress={onDealCardPress}/>}
+            ListFooterComponent={<View style={styles.ListFooterComponent} >
+                <PaperBtn containerStyle={styles.btn} textStyle={styles.btnTextColor} >Add Complaint</PaperBtn>
+                <PaperBtn containerStyle={styles.btn} textStyle={styles.btnTextColor}  >Rate</PaperBtn>
+            </View>}
         />
     );
 };
 
 export default Category;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    ListFooterComponent:{
+        flexDirection: 'row',
+        // justifyContent: 'space-evenly',
+        // alignItems: 'center',
+        // flex: 1
+    },
+    btn:{
+        backgroundColor: COLORS.bgColor,
+        padding: 3,
+        // paddingHorizontal: widthPercentageToDP('4%'),
+        flex: 1,
+
+    },
+    btnTextColor:{
+        color: COLORS.white
+    }
+});

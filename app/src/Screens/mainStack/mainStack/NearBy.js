@@ -28,14 +28,17 @@ const [Data, setData] = useState([])
   }, [route.params])
 
 
-  
+  const onDealCardPress = (item) => {
+    navigation.navigate('itemDetails', {item: item});
+  };
+
   return (
     <View style={styles.container} >
       <CustomHeader heading={restaurantScreen ? 'Nearby Restaurant' : 'Nearby Deals'} left={'chevron-left'} leftOnpress={() => navigation.goBack()} iconSize={30} right={'magnify'}/>
 
     <View style={{paddingHorizontal: wp(6)}} >
       <FlatList  data={Data} keyExtractor={()=>uuid.v4()} renderItem={({item}) =>{
-        return restaurantScreen? <RestaurantsCard restaurant={item} /> : <DealCard item={item} icon={'chevron-right-circle-outline'} />
+        return restaurantScreen? <RestaurantsCard restaurant={item} /> : <DealCard item={item} icon={'chevron-right-circle-outline'} handlePress={onDealCardPress} />
         }} 
         ListFooterComponent={<View style={{height: hp(13)}} />}
         showsVerticalScrollIndicator = {false}

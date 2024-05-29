@@ -11,7 +11,16 @@ const COLORS ={
     orangeText: '#AC3416',
     inputBgColor: '#F5F6FA',
     error : "#d0021b",
-    cardBgColor: '#F5F6FA'
+    cardBgColor: '#F5F6FA',
+    darkModeColor :{
+        bgColor1: '#252525',
+        bgColor2: '#313131',
+        bgColor3: '#100f10',
+        bgColor4: '#37373',
+        fontColor1 : "rgba(#fff, 0.96)",
+        fontColor2 : "rgba(#fff, 0.67)",
+        fontColor3: "rgba(#fff, 0.45)",
+    }
 }
 
 export default COLORS

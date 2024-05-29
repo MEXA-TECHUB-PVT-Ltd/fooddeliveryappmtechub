@@ -27,6 +27,7 @@ export const foodCategories = [
       status: 'pending',
       totalAmount: 97.67,
       restaurantName: 'Adison',
+      date: '23 Sep, 12:00 pm',
       deliveryAddress: 'lorem ipsum dolor sit',
       image:
         'https://www.giverecipe.com/wp-content/uploads/2023/01/Air-Fryer-Whole-Chicken-Wings.jpg',
@@ -51,6 +52,7 @@ export const foodCategories = [
       totalAmount: 85.50,
       restaurantName: 'Burger House',
       deliveryAddress: '123 Main St',
+      date: '23 Sep, 12:00 pm',
       image:
       'https://foodbyjonister.com/wp-content/uploads/2020/01/MargheritaPizza.jpg',
       items: [
@@ -73,6 +75,7 @@ export const foodCategories = [
       totalAmount: 60.00,
       restaurantName: 'Pasta Place',
       deliveryAddress: '456 Elm St',
+      date: '23 Sep, 12:00 pm',
       image:
       'https://spicecravings.com/wp-content/uploads/2021/09/Air-Fryer-Garlic-Bread-3.jpg',
       items: [
@@ -95,6 +98,7 @@ export const foodCategories = [
       totalAmount: 120.00,
       restaurantName: 'Sushi World',
       deliveryAddress: '789 Pine St',
+      date: '23 Sep, 12:00 pm',
       image:
       'https://www.recipetineats.com/wp-content/uploads/2022/09/Fries-with-rosemary-salt_1.jpg?resize=650,813',      items: [
         { id: '1', name: 'Sushi Platter', quantity: 1, price: 60 },
@@ -115,6 +119,7 @@ export const foodCategories = [
       totalAmount: 75.25,
       restaurantName: 'Pizza Palace',
       deliveryAddress: '101 Maple St',
+      date: '23 Sep, 12:00 pm',
       image:
       'https://thetoastykitchen.com/wp-content/uploads/2020/10/ranch-dip-in-teal-serving-dish.jpg'  ,    items: [
         { id: '1', name: 'Pepperoni Pizza', quantity: 1, price: 25.25 },
@@ -131,6 +136,36 @@ export const foodCategories = [
     },
   ];
   
+
+
+ export const promoCodes = [
+  {
+    discount: '30% OFF',
+    code: 'BUY3R',
+    expiryDate: '09/23/2023',
+  },
+  {
+    discount: '20% OFF',
+    code: 'SAVE20',
+    expiryDate: '10/01/2023',
+  },
+  {
+    discount: '50% OFF',
+    code: 'HALFPRICE',
+    expiryDate: '12/31/2023',
+  },
+  {
+    discount: '15% OFF',
+    code: 'WELCOME15',
+    expiryDate: '08/15/2023',
+  },
+  {
+    discount: '25% OFF',
+    code: 'SUMMER25',
+    expiryDate: '07/30/2023',
+  },
+];
+ 
  
  export const notificationsArray = [
     {

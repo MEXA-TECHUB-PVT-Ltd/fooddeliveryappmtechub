@@ -4,6 +4,7 @@ import { StyleSheet, Text } from 'react-native';
 import { TabView, TabBar } from 'react-native-tab-view';
 import COLORS from '../../Config/Colors';
 import uuid from 'react-native-uuid';
+import { widthPercentageToDP } from 'react-native-responsive-screen';
 const CustomTabView = ({ routes, renderScene }) => {
   const [index, setIndex] = useState(0);
 
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
   },
   tab: {
     width: 'auto',
-    paddingHorizontal: 20,
+    paddingHorizontal: 35,
   },
   label: {
     color: 'gray',
@@ -50,7 +51,7 @@ const styles = StyleSheet.create({
   },
   indicator: {
     backgroundColor: 'orange',
-    height: 2,
+    height: widthPercentageToDP('1%'),
   },
 });
 

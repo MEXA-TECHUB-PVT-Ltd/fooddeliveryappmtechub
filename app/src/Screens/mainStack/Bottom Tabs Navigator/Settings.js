@@ -27,7 +27,7 @@ const SettingsScreen = ({navigation}) => {
 
   return (
     <View style={styles.container}>
-      <CustomHeader heading={'Settings'} left={'format-align-justify'} right={'logout'}  rightOnPress={()=> setIsModalVisiible(true)}  />
+      <CustomHeader heading={'Settings'} left={'format-align-justify'} right={'logout'} leftOnpress={()=> navigation.openDrawer()}  rightOnPress={()=> setIsModalVisiible(true)}  />
       <ScrollView  contentContainerStyle={styles.scrollContainer}>
         <View style={styles.profileContainer}>
           <Image source={{uri: userInfo.profileImg }} style={styles.profileImg}  />
